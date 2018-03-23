@@ -1,0 +1,54 @@
+<section>
+<!--   <div class="page-header">
+    <h1>Brands</h1>
+  </div>
+  <div class="list-group">
+    <a ng-repeat="brand in vm.brands"
+       ui-sref="brands.view({ brandId: brand._id })"
+       class="list-group-item">
+      <small class="list-group-item-text">
+        Posted on
+        <span ng-bind="brand.created | date:'mediumDate'"></span>
+        by
+        <span ng-if="brand.user" ng-bind="brand.user.displayName"></span>
+        <span ng-if="!brand.user">Deleted User</span>
+      </small>
+      <h4 class="list-group-item-heading" ng-bind="brand.name"></h4>
+    </a>
+  </div>
+  <div class="alert alert-warning text-center" ng-if="vm.brands.$resolved && !vm.brands.length">
+    No Brands yet, why don't you <a ui-sref="brands.create">create one</a>?
+  </div> -->
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="b-brands-holder">
+          <div class="b-store-features b-brands-logos clearfix wow bounceInUp">
+            <ul id="brands-slide" 
+              class="list-unstyled enable-owl-carousel" 
+              data-loop="false" 
+              data-auto-width="false" 
+              data-dots="false" 
+              data-nav="false" 
+              data-margin="0" 
+              data-responsive-class="true" 
+              data-responsive='{"0":{"items": "1"},"479":{"items": "2"},"992":{"items": "3"},"1199":{"items":"6","autoWidth":"true"}}' 
+              data-slider-next="" data-slider-prev="">
+
+              <li ng-repeat="brand in vm.brands">
+                <a ui-sref="brands.view({ brandId: brand._id })">
+                  <img ng-src="{{brand.image}}" replace="{{brand.name}}" class="img-responsive center-block"  style="display: table-cell;
+                    position: relative;
+                    z-index: 1;
+                    max-height: 40px;
+                    vertical-align: middle;" alt="/">
+                </a>
+              </li>
+              
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
