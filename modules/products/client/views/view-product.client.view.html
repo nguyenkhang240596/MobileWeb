@@ -1,4 +1,4 @@
-<section class="section-product-detail">
+<section  ng-controller="ProductsController" class="section-product-detail" ng-init="findOne()">
         <div class="b-page-header">
           <div class="container">
             <div class="row">
@@ -355,7 +355,7 @@
             </div>
             <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
               <div class="detail-title">
-                <h3 class=heading-line>Apple iphone 6s+</h3>
+                <h3 class=heading-line>{{product.name}}</h3>
                 <p>Generic Box, Unlocked, 64GB, Gold Edition</p>
               </div>
               <div class="detail-main">
@@ -537,26 +537,91 @@
                           </p>
                         </div>
                         <div role="tabpanel" class="tab-pane" id="reviews">
-                          <div class="form-group">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad
-                              consectetur dicta dolorum earum eos et eum ex explicabo impedit
-                              laboriosam, maxime nesciunt omnis porro ratione saepe, sapiente sint
-                              totam, voluptas!
-                            </p>
-                            <p>Aliquam beatae cum cupiditate dolores excepturi facere harum impedit
-                              iste laborum. Aspernatur cumque distinctio excepturi illum itaque minus
-                              molestias nesciunt numquam, possimus recusandae ullam velit veritatis. A
-                              et nulla repudiandae!
-                            </p>
-                            <p>Alias amet animi consequuntur culpa debitis dolorem esse expedita illum
-                              labore numquam perspiciatis possimus praesentium quae quas quibusdam
-                              reprehenderit repudiandae sint sit soluta suscipit, tenetur vero
-                              voluptatibus! Illum neque, voluptatem!
-                            </p>
-                            <p>Alias amet asperiores culpa debitis dolor eligendi enim facere fugiat
-                              hic, iusto laboriosam molestias mollitia nobis nulla possimus quasi quia
-                              quod, soluta sunt voluptates? Dicta facilis fugit nostrum omnis sint.
-                            </p>
+                           <div class="b-post-comments wow fadeInUp">
+                            <h3 class="heading-line">Comments <span>[2]</span></h3>
+                            <div class="b-comments-holder">
+                              <div class="comment-item">
+                                <div class="col-sm-1">
+                                  <div class="userpic">
+                                    <span>
+                                      <img src="media/blog/userpics/user1.jpg" class="img-responsive" alt="/">
+                                    </span>
+                                  </div>
+                                </div>
+                                <div class="col-sm-11">
+                                  <div class="comment-body">
+                                    <div class="comment-author">
+                                      <span class="name">William Ben</span>
+                                      <button class="comment-reply pull-right">reply</button>
+                                      <span class="comment-date">december 31, 2015  -  02:36 pm</span>
+                                    </div>
+                                    <div class="comment-text">
+                                      <p>
+                                        Lorem ipsum dolor sit amet consectur adipisicing elitsed do eiusmod tempor incidiant ealnt labore orem ips um dolor sit amet consectetur adipisicing elit eiusmod incididunt. Lorem ipsum dolor sit amet consecteurm adipisicing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                                      </p>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="comment-item">
+                                <div class="col-sm-1">
+                                  <div class="userpic">
+                                    <span>
+                                      <img src="media/blog/userpics/user2.jpg" class="img-responsive" alt="/">
+                                    </span>
+                                  </div>
+                                </div>
+                                <div class="col-sm-11">
+                                  <div class="comment-body">
+                                    <div class="comment-author">
+                                      <span class="name">Sara Alex</span>
+                                      <button class="comment-reply pull-right">reply</button>
+                                      <span class="comment-date">december 31, 2015  -  02:36 pm</span>
+                                    </div>
+                                    <div class="comment-text">
+                                      <p>
+                                        Lorem ipsum dolor sit amet consectur adipisicing elitsed do eiusmod tempor incidiant ealnt labore orem ips um dolor sit amet consectetur adipisicing elit eiusmod incididunt. Lorem ipsum dolor sit amet consecteurm adipisicing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                                      </p>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="b-post-reply wow fadeInUp">
+                            <h3 class="heading-line">
+                              leave a reply
+                            </h3>
+                            <form id="comment-reply-form" class="b-form" method="get" action="#">
+                              <div class="form-group">
+                                <div class="b-form-description">
+                                  <p>
+                                    Required fields are marked with *
+                                  </p>
+                                </div>
+                                <div class="row">
+                                  <div class="col-sm-6">
+                                    <div>
+                                      <input type="text" class="form-control" id="form-first-name" placeholder="Name *">
+                                    </div>
+                                    <div>
+                                      <input type="text" class="form-control" id="form-last-name" placeholder="Email *">
+                                    </div>
+                                    <div>
+                                      <input type="text" class="form-control" id="form-subject" placeholder="Website">
+                                    </div>
+                                  </div>
+                                  <div class="col-sm-6">
+                                    <div>
+                                      <textarea id="form-comment" class="form-control" rows="6" placeholder="Comments"></textarea>
+                                    </div>
+                                    <div>
+                                      <button type="submit" class="btn btn-default">Send comment</button>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </form>
                           </div>
                         </div>
                       </div>

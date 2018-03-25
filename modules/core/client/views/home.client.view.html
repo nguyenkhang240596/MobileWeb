@@ -1,4 +1,4 @@
-<section>
+<section ng-controller="HomeController as vm" ng-init="loadProducts()">
     <!-- Loader -->
     <div id="page-preloader"><span class="spinner"></span></div>
     <!-- Loader end -->
@@ -238,11 +238,11 @@
                     </div>
                     <div class="row">
                       <div class="b-related by-brands wow fadeInUp">
-                        <div class="apple huawei htc sony lg related-item col-xs-6 col-sm-6 col-md-3 col-lg-3">
+                        <div ng-repeat="product in vm.products" class="apple huawei htc sony lg related-item col-xs-6 col-sm-6 col-md-3 col-lg-3">
                           <div class="b-item-card">
                             <div class="image">
-                              <a href="#">
-                                <img src="template/media/item-card-media/6s-plus.jpg" class="img-responsive center-block" alt="/">
+                              <a ui-sref="products.view({ productId: product._id })">
+                                <img src="{{product.image}}" class="img-responsive center-block" alt="/">
                               </a>
                               <div class="image-add-mod">
                                 <div class="add-description">
@@ -256,7 +256,7 @@
                                     <span>3GB RAM / 16GB ROM</span>
                                     <br>
                                     <button class="btn btn-default-color1 btn-sm" type="button"><i class="fa fa-refresh fa-lg"></i></button>
-                                    <a href="media/item-card-media/6s-plus.jpg" data-gal="prettyPhoto" title="6s plus" class="btn btn-lightbox btn-default-color1 btn-sm">
+                                    <a ui-sref="products.view({ productId: product._id })" data-gal="prettyPhoto" title="{{product.name}}" class="btn btn-lightbox btn-default-color1 btn-sm">
                                       <i class="fa fa-search-plus fa-lg"></i>
                                     </a>
                                   </div>
@@ -267,7 +267,7 @@
                             <div class="card-info">
                               <div class="caption">
                                 <p class="name-item">
-                                  <a class="product-name" href="product-details.html">iPhone 6s plus</a>
+                                  <a class="product-name" ui-sref="products.view({ productId: product._id })">iPhone 6s plus</a>
                                 </p>
                                 <span class="product-price">$399.00</span>
                               </div>
@@ -277,297 +277,8 @@
                             </div>
                           </div>
                         </div>
-                        <div class="samsung huawei oppo apple related-item col-xs-6 col-sm-6 col-md-3 col-lg-3">
-                          <div class="b-item-card">
-                            <div class="special-plank sale">
-                              <span>-20%</span>
-                            </div>
-                            <div class="image">
-                              <a href="#">
-                                <img src="template/media/item-card-media/RoseGold.jpg" class="img-responsive center-block" alt="/">
-                              </a>
-                              <div class="image-add-mod">
-                                <div class="add-description">
-                                  <div>
-                                    <span>Qualcomm Snapdragon 801</span>
-                                    <br>
-                                    <span>2.3 GHz Quad-core CPU</span>
-                                    <br>
-                                    <span>5.0" Corning Gorilla Glass</span>
-                                    <br>
-                                    <span>3GB RAM / 16GB ROM</span>
-                                    <br>
-                                    <button class="btn btn-default-color1 btn-sm" type="button"><i class="fa fa-refresh fa-lg"></i></button>
-                                    <a href="media/item-card-media/RoseGold.jpg" data-gal="prettyPhoto" title="RoseGold" class="btn btn-lightbox btn-default-color1 btn-sm">
-                                      <i class="fa fa-search-plus fa-lg"></i>
-                                    </a>
-                                  </div>
-
-                                </div>
-                              </div>
-                            </div>
-                            <div class="card-info">
-                              <div class="caption">
-                                <p class="name-item">
-                                  <a class="product-name" href="product-details.html">iPhone Rose Gold</a>
-                                </p>
-                                <span class="product-price">$280.00</span>
-                                <span class="product-price-old">$649.00</span>
-                              </div>
-                              <div class="add-buttons">
-                                <button type="button" class="btn btn-add btn-add-wish"><i class="fa fa-heart-o"></i></button>
-                              <button type="button" class="btn btn-add btn-add-cart"><i class="fa fa-shopping-cart"></i></button>                                </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="htc oppo htc microsoft related-item col-xs-6 col-sm-6 col-md-3 col-lg-3">
-                          <div class="b-item-card">
-                            <div class="special-plank new">
-                              <span>new</span>
-                            </div>
-                            <div class="image">
-                              <a href="#">
-                                <img src="template/media/item-card-media/mate-s.jpg" class="img-responsive center-block" alt="/">
-                              </a>
-                              <div class="image-add-mod">
-                                <div class="add-description">
-                                  <div>
-                                    <span>Qualcomm Snapdragon 801</span>
-                                    <br>
-                                    <span>2.3 GHz Quad-core CPU</span>
-                                    <br>
-                                    <span>5.0" Corning Gorilla Glass</span>
-                                    <br>
-                                    <span>3GB RAM / 16GB ROM</span>
-                                    <br>
-                                    <button class="btn btn-default-color1 btn-sm" type="button"><i class="fa fa-refresh fa-lg"></i></button>
-                                    <a href="media/item-card-media/mate-s.jpg" data-gal="prettyPhoto" title="Mates" class="btn btn-lightbox btn-default-color1 btn-sm">
-                                      <i class="fa fa-search-plus fa-lg"></i>
-                                    </a>
-                                  </div>
-
-                                </div>
-                              </div>
-                            </div>
-                            <div class="card-info">
-                              <div class="caption">
-                                <p class="name-item">
-                                  <a class="product-name" href="product-details.html">Huawei Mate S</a>
-                                </p>
-                                <span class="product-price">$280.00</span>
-                              </div>
-                              <div class="add-buttons">
-                                <button type="button" class="btn btn-add btn-add-wish"><i class="fa fa-heart-o"></i></button>
-                              <button type="button" class="btn btn-add btn-add-cart"><i class="fa fa-shopping-cart"></i></button>                                </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="sony lg microsoft related-item col-xs-6 col-sm-6 col-md-3 col-lg-3">
-                          <div class="b-item-card">
-                            <div class="special-plank new">
-                              <span>new</span>
-                            </div>
-                            <div class="image">
-                              <a href="#">
-                                <img src="template/media/item-card-media/g84g.jpg" class="img-responsive center-block" alt="/">
-                              </a>
-                              <div class="image-add-mod">
-                                <div class="add-description">
-                                  <div>
-                                    <span>Qualcomm Snapdragon 801</span>
-                                    <br>
-                                    <span>2.3 GHz Quad-core CPU</span>
-                                    <br>
-                                    <span>5.0" Corning Gorilla Glass</span>
-                                    <br>
-                                    <span>3GB RAM / 16GB ROM</span>
-                                    <br>
-                                    <button class="btn btn-default-color1 btn-sm" type="button"><i class="fa fa-refresh fa-lg"></i></button>
-                                    <a href="media/item-card-media/g84g.jpg" data-gal="prettyPhoto" title="HUAWEI G8 4G" class="btn btn-lightbox btn-default-color1 btn-sm">
-                                      <i class="fa fa-search-plus fa-lg"></i>
-                                    </a>
-                                  </div>
-
-                                </div>
-                              </div>
-                            </div>
-                            <div class="card-info">
-                              <div class="caption">
-                                <p class="name-item">
-                                  <a class="product-name" href="product-details.html">HUAWEI G8 4G</a>
-                                </p>
-                                <span class="product-price">$350.00</span>
-                              </div>
-                              <div class="add-buttons">
-                                <button type="button" class="btn btn-add btn-add-wish"><i class="fa fa-heart-o"></i></button>
-                              <button type="button" class="btn btn-add btn-add-cart"><i class="fa fa-shopping-cart"></i></button>                                </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="lg samsung htc sony related-item col-xs-6 col-sm-6 col-md-3 col-lg-3">
-                          <div class="b-item-card">
-                            <div class="special-plank new">
-                              <span>new</span>
-                            </div>
-                            <div class="image">
-                              <a href="#">
-                                <img src="template/media/item-card-media/xperia.jpg" class="img-responsive center-block" alt="/">
-                              </a>
-                              <div class="image-add-mod">
-                                <div class="add-description">
-                                  <div>
-                                    <span>Qualcomm Snapdragon 801</span>
-                                    <br>
-                                    <span>2.3 GHz Quad-core CPU</span>
-                                    <br>
-                                    <span>5.0" Corning Gorilla Glass</span>
-                                    <br>
-                                    <span>3GB RAM / 16GB ROM</span>
-                                    <br>
-                                    <button class="btn btn-default-color1 btn-sm" type="button"><i class="fa fa-refresh fa-lg"></i></button>
-                                    <a href="media/item-card-media/xperia.jpg" data-gal="prettyPhoto" title="Xperia" class="btn btn-lightbox btn-default-color1 btn-sm">
-                                      <i class="fa fa-search-plus fa-lg"></i>
-                                    </a>
-                                  </div>
-
-                                </div>
-                              </div>
-                            </div>
-                            <div class="card-info">
-                              <div class="caption">
-                                <p class="name-item">
-                                  <a class="product-name" href="product-details.html">SONY XPERIA Z5</a>
-                                </p>
-                                <span class="product-price">$550.00</span>
-                              </div>
-                              <div class="add-buttons">
-                                <button type="button" class="btn btn-add btn-add-wish"><i class="fa fa-heart-o"></i></button>
-                              <button type="button" class="btn btn-add btn-add-cart"><i class="fa fa-shopping-cart"></i></button>                                </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="huawei htc microsoft related-item col-xs-6 col-sm-6 col-md-3 col-lg-3">
-                          <div class="b-item-card">
-                            <div class="special-plank new">
-                              <span>new</span>
-                            </div>
-                            <div class="image">
-                              <a href="#">
-                                <img src="template/media/item-card-media/core-prime.jpg" class="img-responsive center-block" alt="/">
-                              </a>
-                              <div class="image-add-mod">
-                                <div class="add-description">
-                                  <div>
-                                    <span>Qualcomm Snapdragon 801</span>
-                                    <br>
-                                    <span>2.3 GHz Quad-core CPU</span>
-                                    <br>
-                                    <span>5.0" Corning Gorilla Glass</span>
-                                    <br>
-                                    <span>3GB RAM / 16GB ROM</span>
-                                    <br>
-                                    <button class="btn btn-default-color1 btn-sm" type="button"><i class="fa fa-refresh fa-lg"></i></button>
-                                    <a href="media/item-card-media/core-prime.jpg" data-gal="prettyPhoto" title="CorePrime" class="btn btn-lightbox btn-default-color1 btn-sm">
-                                      <i class="fa fa-search-plus fa-lg"></i>
-                                    </a>
-                                  </div>
-
-                                </div>
-                              </div>
-                            </div>
-                            <div class="card-info">
-                              <div class="caption">
-                                <p class="name-item">
-                                  <a class="product-name" href="product-details.html">Galaxy Core Prime </a>
-                                </p>
-                                <span class="product-price">$399.00</span>
-                              </div>
-                              <div class="add-buttons">
-                                <button type="button" class="btn btn-add btn-add-wish"><i class="fa fa-heart-o"></i></button>
-                              <button type="button" class="btn btn-add btn-add-cart"><i class="fa fa-shopping-cart"></i></button>                                </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="oppo sony samsung microsoft apple related-item col-xs-6 col-sm-6 col-md-3 col-lg-3">
-                          <div class="b-item-card">
-                            <div class="special-plank new">
-                              <span>new</span>
-                            </div>
-                            <div class="image">
-                              <a href="#">
-                                <img src="template/media/item-card-media/mi41.jpg" class="img-responsive center-block" alt="/">
-                              </a>
-                              <div class="image-add-mod">
-                                <div class="add-description">
-                                  <div>
-                                    <span>Qualcomm Snapdragon 801</span>
-                                    <br>
-                                    <span>2.3 GHz Quad-core CPU</span>
-                                    <br>
-                                    <span>5.0" Corning Gorilla Glass</span>
-                                    <br>
-                                    <span>3GB RAM / 16GB ROM</span>
-                                    <br>
-                                    <button class="btn btn-default-color1 btn-sm" type="button"><i class="fa fa-refresh fa-lg"></i></button>
-                                    <a href="media/item-card-media/mi41.jpg" data-gal="prettyPhoto" title="MI 41" class="btn btn-lightbox btn-default-color1 btn-sm">
-                                      <i class="fa fa-search-plus fa-lg"></i>
-                                    </a>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="card-info">
-                              <div class="caption">
-                                <p class="name-item">
-                                  <a class="product-name" href="product-details.html">Xiaomi Mi 4i</a>
-                                </p>
-                                <span class="product-price">$350.00</span>
-                              </div>
-                              <div class="add-buttons">
-                                <button type="button" class="btn btn-add btn-add-wish"><i class="fa fa-heart-o"></i></button>
-                              <button type="button" class="btn btn-add btn-add-cart"><i class="fa fa-shopping-cart"></i></button>                                </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="oppo lg samsung htc apple huawei related-item col-xs-6 col-sm-6 col-md-3 col-lg-3">
-                          <div class="b-item-card">
-                            <div class="image">
-                              <a href="#">
-                                <img src="template/media/item-card-media/6s.jpg" class="img-responsive center-block" alt="/">
-                              </a>
-                              <div class="image-add-mod">
-                                <div class="add-description">
-                                  <div>
-                                    <span>Qualcomm Snapdragon 801</span>
-                                    <br>
-                                    <span>2.3 GHz Quad-core CPU</span>
-                                    <br>
-                                    <span>5.0" Corning Gorilla Glass</span>
-                                    <br>
-                                    <span>3GB RAM / 16GB ROM</span>
-                                    <br>
-                                    <button class="btn btn-default-color1 btn-sm" type="button"><i class="fa fa-refresh fa-lg"></i></button>
-                                    <a href="media/item-card-media/6s.jpg" data-gal="prettyPhoto" title="6s" class="btn btn-lightbox btn-default-color1 btn-sm">
-                                      <i class="fa fa-search-plus fa-lg"></i>
-                                    </a>
-                                  </div>
-
-                                </div>
-                              </div>
-                            </div>
-                            <div class="card-info">
-                              <div class="caption">
-                                <p class="name-item">
-                                  <a class="product-name" href="product-details.html">Apple iPhone 6S</a>
-                                </p>
-                                <span class="product-price">$550.00</span>
-                              </div>
-                              <div class="add-buttons">
-                                <button type="button" class="btn btn-add btn-add-wish"><i class="fa fa-heart-o"></i></button>
-                              <button type="button" class="btn btn-add btn-add-cart"><i class="fa fa-shopping-cart"></i></button>                                </div>
-                            </div>
-                          </div>
-                        </div>
+                        
+                       
                       </div>
                     </div>
                   </div>

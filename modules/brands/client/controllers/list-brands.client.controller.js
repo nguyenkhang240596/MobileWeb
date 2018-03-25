@@ -8,8 +8,8 @@ angular
 
 	    // load products
 	    $scope.loadProducts = function () {
-	      vm.products = ProductsService.query()
-	      console.log(vm.products)
+	      vm.products = ProductsService.query();
+	      console.log(vm.products);
 	    }
 
 		// Find a list of Brands

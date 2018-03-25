@@ -617,12 +617,11 @@
               </div>
               <div class="b-grid">
                 <div class="row" >
-                  <div ng-repeat="product in vm.products"
-       ui-sref="products.view({ productId: product._id })" class="col-lg-4 col-md-4 col-sm-4 col-xs-6">
+                  <div ng-repeat="product in vm.products" class="col-lg-4 col-md-4 col-sm-4 col-xs-6">
                     <div class="b-item-card">
                       <div class="image">
-                        <a ui-sref="products.view({ productId: product._id })" data-gal="prettyPhoto" title=product.name>
-                          <img src=product.image class="img-responsive center-block" alt=product.name>
+                        <a ui-sref="products.view({ productId: product._id })" data-gal="prettyPhoto" title="{{product.name}}">
+                          <img src="{{product.image}}" class="img-responsive center-block" alt=product.name>
                           <div class="image-add-mod">
                             <span class="btn btn-lightbox btn-default-color1 btn-sm">
                               <i class="fa fa-search-plus fa-lg"></i>
