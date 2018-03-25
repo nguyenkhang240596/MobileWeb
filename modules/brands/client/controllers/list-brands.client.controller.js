@@ -1,15 +1,22 @@
-(function () {
-  'use strict';
+'use strict';
 
-  angular
-    .module('brands')
-    .controller('BrandsListController', BrandsListController);
+angular
+	.module('brands')
+	.controller('BrandsListController', ['$scope', '$stateParams', '$location', 'Authentication', 'BrandsService', 'ProductsService',
+	function BrandsListController($scope, $stateParams, $location, Authentication, BrandsService, ProductsService) {
+		var vm = this;
 
-  BrandsListController.$inject = ['BrandsService'];
+	    // load products
+	    $scope.loadProducts = function () {
+	      vm.products = ProductsService.query()
+	      console.log(vm.products)
+	    }
 
-  function BrandsListController(BrandsService) {
-    var vm = this;
+		// Find a list of Brands
+		$scope.find = function () {
+			$scope.brands = BrandsService.query();
+			console.log(BrandsService.query(), 2);
+		};
+	}
+]);
 
-    vm.brands = BrandsService.query();
-  }
-}());

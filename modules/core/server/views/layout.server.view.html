@@ -38,9 +38,9 @@
 <body class="ng-cloak">
   <header ng-include="'/modules/core/client/views/header.html'"></header>
   <section class="content">
-    <section class="container">
+    <!-- <section class="container"> -->
       {% block content %}{% endblock %}
-    </section>
+    <!-- </section> -->
   </section>
 
   <div ng-include="'/modules/core/client/views/footer.html'"></div>
@@ -51,15 +51,15 @@
   </script>
 
   <!--Load The Socket.io File-->
-  <script type="text/javascript" src="/socket.io/socket.io.js"></script>
+  <!-- <script type="text/javascript" src="/socket.io/socket.io.js"></script> -->
 
   <!--Application JavaScript Files-->
   {% for jsFile in jsFiles %}<script type="text/javascript" src="{{jsFile}}"></script>{% endfor %}
 
-  {% if livereload %}
+  <!-- {% if livereload %} -->
   <!--Livereload script rendered -->
-  <script type="text/javascript" src="{{host}}:35729/livereload.js"></script>
-  {% endif %}
+  <!-- <script type="text/javascript" src="{{host}}:35729/livereload.js"></script> -->
+  <!-- {% endif %} -->
 </body>
 
 </html>

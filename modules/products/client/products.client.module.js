@@ -1,5 +1,5 @@
 (function (app) {
   'use strict';
 
-  app.registerModule('brands', ['products']);
+  app.registerModule('products');
 }(ApplicationConfiguration));

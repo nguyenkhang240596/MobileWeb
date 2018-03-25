@@ -6,17 +6,17 @@
     .module('brands')
     .controller('BrandsController', BrandsController);
 
-  BrandsController.$inject = ['$scope', '$state', '$window', 'Authentication', 'brandResolve'];
+  BrandsController.$inject = ['$scope', '$state', '$window', 'Authentication', 'brandResolve', 'ProductsService'];
 
-  function BrandsController ($scope, $state, $window, Authentication, brand) {
+  function BrandsController ($scope, $state, $window, Authentication, brand, ProductsService) {
     var vm = this;
-
     vm.authentication = Authentication;
     vm.brand = brand;
     vm.error = null;
     vm.form = {};
     vm.remove = remove;
     vm.save = save;
+
 
     // Remove existing Brand
     function remove() {

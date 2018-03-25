@@ -1,4 +1,4 @@
-<section ng-controller="HomeController">
+<section>
     <!-- Loader -->
     <div id="page-preloader"><span class="spinner"></span></div>
     <!-- Loader end -->
@@ -182,7 +182,9 @@
             </div>
           </div>
         </div>
-    
+     
+        <div ng-include="'modules/brands/client/views/list-brands.client.view.html'"></div>
+
         <div class="b-bestsellers">
           <div class="container">
             <div class="row">
@@ -743,7 +745,6 @@
           </div>
         </div>
   
-        <div ng-include="'modules/brands/client/views/list-brands.client.view.html'"></div>
 
         <div class="b-hr-mod">
           <hr>

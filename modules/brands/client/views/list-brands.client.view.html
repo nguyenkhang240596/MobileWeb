@@ -1,4 +1,5 @@
-<section>
+<section ng-controller="BrandsListController" ng-init="find()">
+<!-- <section> -->
 <!--   <div class="page-header">
     <h1>Brands</h1>
   </div>
@@ -35,7 +36,7 @@
               data-responsive='{"0":{"items": "1"},"479":{"items": "2"},"992":{"items": "3"},"1199":{"items":"6","autoWidth":"true"}}' 
               data-slider-next="" data-slider-prev="">
 
-              <li ng-repeat="brand in vm.brands">
+              <li ng-repeat="brand in brands">
                 <a ui-sref="brands.view({ brandId: brand._id })">
                   <img ng-src="{{brand.image}}" replace="{{brand.name}}" class="img-responsive center-block"  style="display: table-cell;
                     position: relative;

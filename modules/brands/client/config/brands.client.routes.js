@@ -17,8 +17,8 @@
       .state('brands.list', {
         url: '',
         templateUrl: 'modules/brands/client/views/list-brands.client.view.html',
-        controller: 'BrandsListController',
-        controllerAs: 'vm',
+        // controller: 'BrandsListController',
+        // controllerAs: 'vm',
         data: {
           pageTitle: 'Brands List'
         }
