@@ -5,8 +5,8 @@ var defaultEnvConfig = require('./default');
 module.exports = {
   db: {
     uri: process.env.MONGOHQ_URL || process.env.MONGOLAB_URI ||
-     'mongodb://' + (process.env.DB_1_PORT_27017_TCP_ADDR || 'localhost') + '/mobileweb',
-    // 'mongodb://root:123@ds155278.mlab.com:55278/mobileweb',
+     // 'mongodb://' + (process.env.DB_1_PORT_27017_TCP_ADDR || 'localhost') + '/mobileweb',
+    'mongodb://root:123@ds155278.mlab.com:55278/mobileweb',
     options: {
       user: '',
       pass: ''
