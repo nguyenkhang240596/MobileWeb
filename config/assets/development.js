@@ -21,15 +21,18 @@ module.exports = {
 
       ],
       js: [
+
         // bower:js
         'public/lib/angular/angular.js',
         'public/lib/angular-resource/angular-resource.js',
         'public/lib/angular-animate/angular-animate.js',
         'public/lib/angular-messages/angular-messages.js',
+        // 'public/lib/angular-ui-router/release/ui-bootstrap.min.js',
+        'public/lib/angular-bootstrap/ui-bootstrap-tpls.js',
         'public/lib/angular-ui-router/release/angular-ui-router.js',
         'public/lib/angular-ui-utils/ui-utils.js',
-        'public/lib/angular-bootstrap/ui-bootstrap-tpls.js',
         'public/lib/angular-file-upload/angular-file-upload.js',
+
         'public/lib/owasp-password-strength-test/owasp-password-strength-test.js',
         // endbower
 
@@ -38,11 +41,14 @@ module.exports = {
         // 'public/lib/jquery/dist/jquery.min.js',
         // 'public/lib/jquery/dist/jquery-2.0.0.min.js',
         
+        // <!--bx slider-->
+        'public/lib/assets/bxslider/jquery.bxslider.min.js',
+        // 'public/lib/bxslider-4.1.2/jquery.bxslider.min.js',
 
         'public/lib/assets/js/bootstrap.min.js',
 
         'public/lib/assets/js/waypoints.min.js',
-        'public/lib/assets/js/smoothscroll.min.js',
+        // 'public/lib/assets/js/smoothscroll.min.js',
         'public/lib/assets/js/isotope.pkgd.min.js',
         
         'public/lib/assets/switcher/js/dmss.js',
@@ -63,8 +69,6 @@ module.exports = {
         // <!--Owl Carousel-->
         'public/lib/assets/owl-carousel/owl.carousel.min.js',
         
-        // <!--bx slider-->
-        'public/lib/assets/bxslider/jquery.bxslider.min.js',
 
         // <!-- slider-pro-master -->
         'public/lib/assets/slider-pro-master/js/jquery.sliderPro.min.js',
@@ -74,8 +78,8 @@ module.exports = {
 
         'public/lib/assets/js/jquery.easypiechart.min.js',
         'public/lib/assets/js/jquery.spinner.min.js',
-        'public/lib/assets/js/jquery.placeholder.min.js',
-        'public/lib/assets/js/theme.js'
+        'public/lib/assets/js/jquery.placeholder.min.js'
+        // 'public/lib/assets/js/theme.js'
 
       ],
       tests: ['public/lib/angular-mocks/angular-mocks.js']

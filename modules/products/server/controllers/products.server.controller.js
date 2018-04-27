@@ -6,6 +6,7 @@
 var path = require('path'),
   mongoose = require('mongoose'),
   Product = mongoose.model('Product'),
+  Brand = mongoose.model('Brand'),
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller')),
   _ = require('lodash');
 
@@ -81,7 +82,9 @@ exports.delete = function(req, res) {
  * List of Products
  */
 exports.list = function(req, res) {
-  Product.find().sort('-created').populate('user', 'displayName').exec(function(err, products) {
+  Product.find().sort('-created')
+  .populate('brand', 'tag')
+  .exec(function(err, products) {
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)

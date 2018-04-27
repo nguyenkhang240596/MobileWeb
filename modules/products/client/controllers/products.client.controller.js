@@ -6,17 +6,24 @@
     .module('products')
     .controller('ProductsController', ProductsController);
 
-  ProductsController.$inject = ['$scope', '$state', '$window', 'Authentication', 'productResolve'];
+  ProductsController.$inject = ['$scope', '$state', '$stateParams', '$window', 'Authentication', 'ProductsService', 'initService'];
 
-  function ProductsController ($scope, $state, $window, Authentication, product) {
+  function ProductsController ($scope, $state, $stateParams, $window, Authentication, ProductsService, initService) {
     var vm = this;
 
     vm.authentication = Authentication;
-    vm.product = product;
+    // vm.product = product;
     vm.error = null;
     vm.form = {};
     vm.remove = remove;
     vm.save = save;
+
+    $scope.findOne = function () {
+      $scope.product = ProductsService.get({
+        productId: $stateParams.productId
+      });
+      console.log($scope.product)
+    };
 
     // Remove existing Product
     function remove() {
@@ -49,5 +56,10 @@
         vm.error = res.data.message;
       }
     }
-  }
+
+    angular.element(document).ready(function() {
+          FB.XFBML.parse();
+   });
+    initService.init();
+  } 
 }());

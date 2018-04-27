@@ -7,6 +7,11 @@ module.exports = function (app) {
   // Setting up the users profile api
   app.route('/api/users/me').get(users.me);
   app.route('/api/users').put(users.update);
+  app.route('/api/users/getcart').get(users.getUserCart);
+  app.route('/api/users/addtocart').post(users.addProductToUser);
+  app.route('/api/users/updatecart').post(users.updateCart);
+  app.route('/api/users/addQuantity').post(users.addQuantity);
+  app.route('/api/users/subQuantity').post(users.subQuantity);
   app.route('/api/users/accounts').delete(users.removeOAuthProvider);
   app.route('/api/users/password').post(users.changePassword);
   app.route('/api/users/picture').post(users.changeProfilePicture);

@@ -2,7 +2,7 @@
     <!-- Loader -->
     <div id="page-preloader"><span class="spinner"></span></div>
     <!-- Loader end -->
-
+    
     <div class="b-page">
       <!-- Start Switcher -->
       <div class="switcher-wrapper">
@@ -34,8 +34,8 @@
           <div class="slider-pro full-width-slider" id="main-slider" data-width="100%" data-height="370" data-fade="true" data-buttons="true" data-wait-for-layers="true" data-thumbnail-pointer="false" data-touch-swipe="false" data-autoplay="true" data-auto-scale-layers="true" data-visible-size="100%" data-force-size="fullWidth" data-autoplay-delay="5000" >
             <div class="sp-slides">
               <div class="sp-slide">
-                <img class="sp-image" src="template/media/slides/slide_1.jpg"
-                  data-src="template/media/slides/slide_1.jpg"
+                <img class="sp-image" src="template/media/slides/real/slide_1.jpg"
+                  data-src="template/media/slides/real/slide_1.jpg"
                   data-retina="media/slides/slide_1.jpg" alt="slide1" />
                 <div class="sp-layer slider-discount"
                   data-horizontal="18.6%" data-vertical="22.5%"
@@ -61,8 +61,8 @@
               </div>
 
               <div class="sp-slide">
-                <img class="sp-image" src="template/media/slides/slide_2.jpg"
-                  data-src="template/media/slides/slide_2.jpg"
+                <img class="sp-image" src="template/media/slides/real/slide_2.jpg"
+                  data-src="template/media/slides/real/slide_2.jpg"
                   data-retina="media/slides/slide_2.jpg" alt="slide2" />
                 <div class="sp-layer ls-text"
                   data-horizontal="14.8%" data-vertical="27.5%"
@@ -72,13 +72,13 @@
                 <div class="sp-layer"
                   data-horizontal="15%" data-vertical="35.5%"
                   data-show-transition="left" data-hide-transition="up" data-show-delay="600" data-hide-delay="100">
-                  <img src="template/media/slides/samsung.png" alt="samsung">
+                  <img src="template/media/slides/real/samsung.png" alt="samsung">
 
                 </div>
                 <div class="sp-layer"
                   data-horizontal="15%" data-vertical="41.7%"
                   data-show-transition="left" data-hide-transition="up" data-show-delay="800">
-                  <img src="template/media/slides/galaxy.png" alt="samsung galaxy">
+                  <img src="template/media/slides/real/galaxy.png" alt="samsung galaxy">
                 </div>
                 <div class="sp-layer text-highlight"
                   data-horizontal="15%" data-vertical="52%"
@@ -93,8 +93,8 @@
               </div>
 
               <div class="sp-slide">
-                <img class="sp-image" src="template/media/slides/slide_3.jpg"
-                  data-src="template/media/slides/slide_3.jpg"
+                <img class="sp-image" src="template/media/slides/real/slide_3.jpg"
+                  data-src="template/media/slides/real/slide_3.jpg"
                   data-retina="media/slides/slide_3.jpg" alt="slide3" />
                 <div class="sp-layer s3-text"
                   data-horizontal="18.7%" data-vertical="22.3%"
@@ -214,34 +214,38 @@
                                 <button data-filter=".samsung" class="btn btn-tag">Samsung</button>
                               </li>
                               <li>
-                                <button data-filter=".microsoft" class="btn btn-tag">microsoft</button>
+                                <button data-filter=".oppo" class="btn btn-tag">Oppo</button>
                               </li>
                               <li>
-                                <button data-filter=".htc" class="btn btn-tag">HTC</button>
+                                <button data-filter=".sony" class="btn btn-tag">Sony</button>
                               </li>
                               <li>
-                                <button data-filter=".sony" class="btn btn-tag">SONY</button>
+                                <button data-filter=".vivo" class="btn btn-tag">Vivo</button>
                               </li>
                               <li>
-                                <button data-filter=".lg" class="btn btn-tag">LG</button>
+                                <button data-filter=".xiaomi" class="btn btn-tag">Xiaomi</button>
                               </li>
                               <li>
-                                <button data-filter=".huawei" class="btn btn-tag">huawei</button>
+                                <button data-filter=".nokia" class="btn btn-tag">Nokia</button>
                               </li>
                               <li>
-                                <button data-filter=".oppo" class="btn btn-tag">oppo</button>
+                                <button data-filter=".asus" class="btn btn-tag">Asus</button>
+                              </li>
+                              <li>
+                                <button data-filter=".huawei" class="btn btn-tag">Huawei</button>
                               </li>
                             </ul>
                           </div>
                         </div>
                       </div>
                     </div>
+                    <!-- Show Products -->
                     <div class="row">
                       <div class="b-related by-brands wow fadeInUp">
-                        <div ng-repeat="product in vm.products" class="apple huawei htc sony lg related-item col-xs-6 col-sm-6 col-md-3 col-lg-3">
+                        <div ng-repeat="product in vm.products" class="{{product.brand.tag}} related-item col-xs-6 col-sm-6 col-md-3 col-lg-3">
                           <div class="b-item-card">
                             <div class="image">
-                              <a ui-sref="products.view({ productId: product._id })">
+                              <a ui-sref="products.view({   productId: product._id })">
                                 <img src="{{product.image}}" class="img-responsive center-block" alt="/">
                               </a>
                               <div class="image-add-mod">
@@ -267,13 +271,13 @@
                             <div class="card-info">
                               <div class="caption">
                                 <p class="name-item">
-                                  <a class="product-name" ui-sref="products.view({ productId: product._id })">iPhone 6s plus</a>
+                                  <a class="product-name" ui-sref="products.view({ productId: product._id })">{{product.name}}</a>
                                 </p>
                                 <span class="product-price">$399.00</span>
                               </div>
                               <div class="add-buttons">
                                 <button type="button" class="btn btn-add btn-add-wish"><i class="fa fa-heart-o"></i></button>
-                              <button type="button" class="btn btn-add btn-add-cart"><i class="fa fa-shopping-cart"></i></button>                                </div>
+                              <button type="button" class="btn btn-add btn-add-cart" ng-click="addProductToCart(product)"><i class="fa fa-shopping-cart"></i></button>                                </div>
                             </div>
                           </div>
                         </div>
@@ -464,5 +468,6 @@
       </section>
     
     </div>
-
 </section>
+<!-- 
+<script type="text/javascript" src="lib/assets/js/theme.js"></script> -->

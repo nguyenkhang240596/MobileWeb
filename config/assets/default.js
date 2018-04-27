@@ -13,6 +13,7 @@ module.exports = {
         // <!-- SWITCHER -->
         'public/template/assets/switcher/css/switcher.css',
         'public/template/assets/switcher/css/color1.css'
+        // ,
         // 'public/template/assets/switcher/css/color2.css',
         // 'public/template/assets/switcher/css/color3.css',
         // 'public/template/assets/switcher/css/color4.css'
@@ -63,7 +64,7 @@ module.exports = {
         'public/lib/assets/owl-carousel/owl.carousel.min.js',
         
         // <!--bx slider-->
-        'public/lib/assets/bxslider/jquery.bxslider.min.js',
+        // 'public/lib/assets/bxslider/jquery.bxslider.min.js',
 
         // <!-- slider-pro-master -->
         'public/lib/assets/slider-pro-master/js/jquery.sliderPro.min.js',
@@ -73,8 +74,7 @@ module.exports = {
 
         'public/lib/assets/js/jquery.easypiechart.min.js',
         'public/lib/assets/js/jquery.spinner.min.js',
-        'public/lib/assets/js/jquery.placeholder.min.js',
-        'public/lib/assets/js/theme.js'
+        'public/lib/assets/js/jquery.placeholder.min.js'
 
       ],
       tests: ['public/lib/angular-mocks/angular-mocks.js']

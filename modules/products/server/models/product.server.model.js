@@ -16,13 +16,19 @@ var ProductSchema = new Schema({
     required: 'Please fill Product name',
     trim: true
   },
+  price : Number,
+  image : String,
+  brand : {
+    type: Schema.ObjectId,
+    ref: 'Brand'
+  },
   created: {
     type: Date,
     default: Date.now
-  },
-  user: {
-    type: Schema.ObjectId,
-    ref: 'User'
+  }, 
+  uploadDate: {
+    type: Date,
+    default: Date.now
   }
 });
 

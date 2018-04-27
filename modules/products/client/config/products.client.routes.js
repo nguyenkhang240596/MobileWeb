@@ -14,6 +14,16 @@
         url: '/products',
         template: '<ui-view/>'
       })
+       .state('products.comment', {
+        abstract: true,
+        url: '/products/comment',
+        templateUrl: 'modules/products/client/views/comment.client.view.html',
+        controller: 'ProductsListController',
+        controllerAs: 'vm',
+        data: {
+          pageTitle: 'Products Comment'
+        }
+      })
       .state('products.list', {
         url: '',
         templateUrl: 'modules/products/client/views/list-products.client.view.html',

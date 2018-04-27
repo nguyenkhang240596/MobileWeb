@@ -1,83 +1,50 @@
-<div class="b-top-line" ng-controller="HeaderController">
+<div id="mHeader" class="b-top-line ng-scope" ng-controller="HeaderController">
 	<div class="container">
 		<div class="row">
-			<div class="col-sm-12 clearfix">
-				<div class="b-top-options pull-left">
-					<div class="nav">
-						<ul class="list-inline">
-							<li class="dropdown">
-								<div class="btn-group">
-									<button class="dropdown-toggle" data-toggle="dropdown" type="button" aria-expanded="false">
-										<span class="flag-icon flag-icon-gb"></span>
-										ENG
-										<i class="fa fa-angle-down"></i>
-									</button>
-									<ul class="dropdown-menu dropdown-menu-left" role="menu">
-										<li>
-											<a href="javascript:void(0);"><span class="flag-icon flag-icon-gb"></span> ENG</a>
-										</li>
-										<li class="li-last">
-											<a href="javascript:void(0);"><span class="flag-icon flag-icon-fr"></span> FR</a>
-										</li>
-									</ul>
-								</div>
-							</li>
-							<li class="dropdown">
-								<div class="btn-group">
-									<button class="dropdown-toggle" data-toggle="dropdown" type="button" aria-expanded="false">
-										USD
-										<i class="fa fa-angle-down"></i>
-									</button>
-									<ul class="dropdown-menu dropdown-menu-left" role="menu">
-										<li>
-											<a href="javascript:void(0);">USD</a>
-										</li>
-										<li class="li-last">
-											<a href="javascript:void(0);">EURO</a>
-										</li>
-									</ul>
-								</div>
-							</li>
-							<li class="dropdown">
-								<div class="btn-group">
-									<button class="dropdown-toggle" data-toggle="dropdown" title="My Account">
-										<span>My Account</span>
-										<i class="fa fa-angle-down"></i>
-									</button>
-									<ul class="dropdown-menu dropdown-menu-right">
-										<li><a href="#"><i class="fa fa-unlock"></i>Login</a></li>
-										<li><a href="#"><i class="fa fa-user"></i>Create Account</a></li>
-										<li><a href="#"><i class="fa fa-heart"></i>My Wishlist</a></li>
-										<li><a href="#"><i class="fa fa-shopping-cart"></i>My Shopping Cart</a></li>
-										<li><a href="#"><i class="fa fa-arrow-left"></i>Checkout</a></li>
-									</ul>
-								</div>
-							</li>
-						</ul>
-					</div>
-				</div>
-				<div class="b-top-info pull-right">
-					<div class="nav">
-						<ul class="list-inline">
-							<li>
-								<span><i class="fa fa-phone"></i>(0) 123 456 7890</span>
-							</li>
-							<li>
-								<span><i class="fa fa-envelope-o"></i>order@domain.net</span>
-							</li>
-						</ul>
-					</div>
-				</div>
-			</div>
+			<ul class="nav navbar-nav navbar-right" ng-hide="authentication.user">
+				<li ui-sref-active="active">
+					<a ui-sref="authentication.signup">Sign Up</a>
+				</li>
+				<li class="divider-vertical"></li>
+				<li ui-sref-active="active">
+					<a ui-sref="authentication.signin">Sign In</a>
+				</li>
+			</ul>
+			<ul class="nav navbar-nav navbar-right" ng-show="authentication.user">
+				<li class="dropdown" dropdown>
+					<a class="dropdown-toggle user-header-dropdown-toggle" dropdown-toggle role="button">
+						<img ng-src="{{authentication.user.profileImageURL}}" alt="{{authentication.user.displayName}}" class="header-profile-image" />
+						<span ng-bind="authentication.user.displayName"></span> <b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu" role="menu">
+						<li ui-sref-active="active">
+							<a ui-sref="settings.profile">Edit Profile</a>
+						</li>
+						<li ui-sref-active="active">
+							<a ui-sref="settings.picture">Change Profile Picture</a>
+						</li>
+						<li ui-sref-active="active" ng-show="authentication.user.provider === 'local'">
+							<a ui-sref="settings.password">Change Password</a>
+						</li>
+						<li ui-sref-active="active">
+							<a ui-sref="settings.accounts">Manage Social Accounts</a>
+						</li>
+						<li class="divider"></li>
+						<li>
+							<a href="/api/auth/signout" target="_self">Signout</a>
+						</li>
+					</ul>
+				</li>
+			</ul>
 		</div>
 	</div>
 </div>
-<div class="b-header-main">
+<div class="b-header-main" ng-controller="HeaderController">
 	<div class="container">
 		<div class="row">
 			<div class="col-xs-6 col-sm-2 col-md-2 col-lg-2">
 				<div class="b-logo">
-					<a href="home-1.html">
+					<a href="/">
 						<span>iSmile</span>
 						<br>
 						<span>store</span>
@@ -85,285 +52,54 @@
 				</div>
 			</div>
 			<div id="toggle-nav" class="col-xs-12 col-sm-10 col-md-8 col-lg-8 menu-wrapper clearfix">
-				<div class="toggle-nav-btn">
-					<button class="btn btn-menu"><i class="fa fa-bars fa-lg"></i></button>
-				</div>
-				<div class="b-header-menu pull-right">
-					<ul class="list-inline">
-						<li>
-							<a class="heading-line" href="home-1.html">HOME</a>
-							<div class="b-all-homes">
-								<ul class="list-unstyled">
-									<li>
-										<a class="heading-line" href="home-2.html">HOME 2</a>
-									</li>
-									<li>
-										<a class="heading-line" href="home-3.html">HOME 3</a>
-									</li>
-								</ul>
-							</div>
-						</li>
-						<li id="all-menu-open">
-							<a class="heading-line" href="category-1-grid.html">all brands <i class="fa fa-angle-down"></i></a>
-							<div id="b-all-menu" class="hidden-xs">
-								<div class="row">
-									<div class="clearfix">
-										<div class="all-menu-holder col-sm-12">
-											<div class="row">
-												<div class="all-menu-content clearfix">
-													<div class="col-sm-4 col-md-6 col-lg-4">
-														<div class="all-menu-offer">
-															<a href="#"><img src="template/media/offers/all-menu1.jpg" class="img-responsive" alt="/"></a>
-														</div>
-													</div>
-													<div class="col-sm-8 col-md-6 col-lg-8">
-														<div class="all-menu-list">
-															<div class="row">
-																<div class="all-menu-item-holder col-sm-4">
-																	<div class="all-menu-item">
-																		<div class="all-menu-title">
-																			Featured phones
-																		</div>
-																		<ul class="list-unstyled">
-																			<li>
-																				<a href="#">Galaxy S Series</a>
-																			</li>
-																			<li>
-																				<a href="#">Galaxy Note Series</a>
-																			</li>
-																			<li>
-																				<a href="#">Apple iPhone</a>
-																			</li>
-																			<li>
-																				<a href="#">Sony Xperia Series</a>
-																			</li>
-																		</ul>
-																	</div>
-																	<div class="all-menu-item item-mod">
-																		<div class="all-menu-title">
-																			operating system
-																		</div>
-																		<ul class="list-unstyled">
-																			<li>
-																				<a href="#">Google Android</a>
-																			</li>
-																			<li>
-																				<a href="#">Apple iOS</a>
-																			</li>
-																		</ul>
-																	</div>
-																</div>
-																<div class="all-menu-item-holder col-sm-4">
-																	<div class="all-menu-item">
-																		<div class="all-menu-title">
-																			popular Brands
-																		</div>
-																		<ul class="list-unstyled">
-																			<li>
-																				<a href="#">Apple iPhone</a>
-																			</li>
-																			<li>
-																				<a href="#">Samsung</a>
-																			</li>
-																			<li>
-																				<a href="#">HTC</a>
-																			</li>
-																			<li>
-																				<a href="#">Microsoft / Nokia</a>
-																			</li>
-																			<li>
-																				<a href="#">Huawei</a>
-																			</li>
-																			<li>
-																				<a href="#">Oppo</a>
-																			</li>
-																			<li>
-																				<a href="#">Motorola</a>
-																			</li>
-																			<li>
-																				<a href="#">LG Electronics</a>
-																			</li>
-																			<li>
-																				<a href="#">Blackberry</a>
-																			</li>
-																		</ul>
-																	</div>
-																</div>
-																<div class="all-menu-item-holder col-sm-4">
-																	<div class="all-menu-item">
-																		<div class="all-menu-title">
-																			promotions
-																		</div>
-																		<ul class="list-unstyled">
-																			<li>
-																				<a href="#">Hot Deals</a>
-																			</li>
-																			<li>
-																				<a href="#">Latest Products</a>
-																			</li>
-																			<li>
-																				<a href="#">Clearance Sale</a>
-																			</li>
-																		</ul>
-																	</div>
-																	<div class="all-menu-item">
-																		<div class="all-menu-offer">
-																			<a href="#"><img src="template/media/offers/all-menu2.jpg" class="img-responsive center-block" alt="/"></a>
-																		</div>
-																	</div>
-																</div>
-															</div>
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</li>
-						<li>
-							<a class="heading-line" href="#">categories</a>
-							<div class="b-all-homes">
-								<ul class="list-unstyled">
-									<li>
-										<a class="heading-line" href="category-1-grid.html">CATEGORY 1</a>
-									</li>
-									<li>
-										<a class="heading-line" href="category-2-grid.html">CATEGORY 2</a>
-									</li>
-									<li>
-										<a class="heading-line" href="category-3-list.html">CATEGORY 3</a>
-									</li>
-									<li>
-										<a class="heading-line" href="category-4-list.html">CATEGORY 4</a>
-									</li>
-								</ul>
-							</div>
-						</li>
-						<li>
-							<a class="heading-line" href="#">products</a>
-							<div class="b-all-homes">
-								<ul class="list-unstyled">
-									<li>
-										<a class="heading-line" href="product-details.html">PRODUCT 1</a>
-									</li>
-									<li>
-										<a class="heading-line" href="product-details-2.html">PRODUCT 2</a>
-									</li>
-								</ul>
-							</div>
-						</li>
-						<li>
-							<a class="heading-line" href="#">about</a>
-						</li>
-						<li>
-							<a class="heading-line" href="blog-main.html">blog</a>
-							<div class="b-all-homes">
-								<ul class="list-unstyled">
-									<li>
-										<a class="heading-line" href="blog-main.html">BLOG MAIN</a>
-									</li>
-									<li>
-										<a class="heading-line" href="blog-post.html">BLOG POST</a>
-									</li>
-								</ul>
-							</div>
-						</li>
-						<li>
-							<a class="heading-line" href="contact.html">Contact</a>
-						</li>
-						<li>
-							<a class="heading-line" href="javascript:void(0);">Pages</a>
-							<div class="b-all-homes">
-								<ul class="list-unstyled">
-									<li>
-										<a class="heading-line" href="shopping-cart.html">cart</a>
-									</li>
-									<li>
-										<a class="heading-line" href="my-wishlist.html">wishlist</a>
-									</li>
-									<li>
-										<a class="heading-line" href="typography.html">typography</a>
-									</li>
-									<li>
-										<a class="heading-line" href="404.html">404</a>
-									</li>
-								</ul>
-							</div>
-						</li>
-						<li class="search">
-							<a id="search-open" class="iconSearch" href="#"><i class="fa fa-search"></i></a>
-							<div id="search">
-								<form action="#" method="post">
-									<div class="form-group">
-										<input id="searchQuery" type="search" placeholder="Search...">
-									</div>
-								</form>
-							</div>
-						</li>
-					</ul>
-				</div>
 			</div>
-			<div id="cart-wrapper" class="col-xs-6 col-sm-12 col-md-2 col-lg-2">
+			<div id="cart-wrapper" class="col-xs-6 col-sm-12 col-md-2 col-lg-2"
+				ng-show="authentication.user">
 				<div class="b-cart pull-right">
 					<button id="cart" class="btn btn-default-color1 btn-sm">
-						<span class="price"><i class="fa fa-shopping-bag"></i> $ 460.00</span>
-						<span class="counter-wrapper"><span class="counter">2</span></span>
+						<span class="price"><i class="fa fa-shopping-bag"></i> </span>
+						<span id="sumPrice">$ {{sumPrice}}</span>
+						<span class="counter-wrapper"><span class="counter">{{countCartItem}}</span></span>
 					</button>
 					<div class="cart-products">
 						<div class="c-holder">
 							<h3 class="title">
 								my shopping cart
 							</h3>
-							<ul class="products-list list-unstyled">
-								<li>
+							<ul style="overflow:scroll; height:400px;" class="products-list list-unstyled">
+								<li ng-repeat="cart in carts" >
 									<div class="b-cart-table ">
 										<a href="#" class="image">
+											<img src="{{cart.productId.image}}" alt="/">
+										</a>
+										<div class="caption">
+											<a class="product-name" href="product-details.html">{{cart.productId.name}}</a>
+											<span class="product-price">{{cart.quantity}} x ${{cart.productId.price}}</span>
+										</div>
+										<button class="btn btn-remove" ng-click="removeCart($event, cart._id)"><i class="fa fa-trash fa-lg"></i></button>
+									</div>
+								</li>
+								<!-- <li>
+									<div class="b-cart-table ">
+										<a ui-sref="products.view({   productId: product._id })" class="image">
 											<img src="template/media/cart-products/product1.jpg" alt="/">
 										</a>
 										<div class="caption">
-											<a class="product-name" href="product-details.html">Huawei Mate S</a>
+											<a class="product-name" href="product-details.html">{{productId.name}}</a>
 											<span class="product-price">1 x $280.00</span>
-											<div class="rating">
-												<span class="star"><i class="fa fa-star"></i></span>
-												<span class="star"><i class="fa fa-star"></i></span>
-												<span class="star"><i class="fa fa-star"></i></span>
-												<span class="star"><i class="fa fa-star"></i></span>
-												<span class="star star-empty"><i class="fa fa-star-o"></i></span>
-											</div>
 										</div>
 										<button class="btn btn-remove"><i class="fa fa-trash fa-lg"></i></button>
 									</div>
-								</li>
-								<li>
-									<div class="b-cart-table ">
-										<a href="#" class="image">
-											<img src="template/media/cart-products/product2.jpg" alt="/">
-										</a>
-										<div class="caption">
-											<a class="product-name" href="product-details.html">Sony xperia z5</a>
-											<span class="product-price">1 x $620.00</span>
-											<div class="rating">
-												<span class="star"><i class="fa fa-star"></i></span>
-												<span class="star"><i class="fa fa-star"></i></span>
-												<span class="star"><i class="fa fa-star"></i></span>
-												<span class="star"><i class="fa fa-star"></i></span>
-												<span class="star star-empty"><i class="fa fa-star-o"></i></span>
-											</div>
-										</div>
-										<button class="btn btn-remove"><i class="fa fa-trash fa-lg"></i></button>
-									</div>
-								</li>
+								</li> -->
 								<li>
 									<div class="products-subtotal text-right">
-										Cart Subtotal <span class="subtotal-price">$900.00</span>
+										Cart Subtotal <span class="subtotal-price">${{sumPrice}}</span>
 									</div>
 								</li>
 							</ul>
 							<div class="products-buttons text-center">
-								<button type="button" class="btn btn-default-color1 btn-sm">view cart</button>
-								<button type="button" class="btn btn-primary-color2 btn-sm">Checkout</button>
+								<button onclick="document.location.href=this.getAttribute('href');" href="/cart" type="button" class="btn btn-default-color1 btn-sm">view cart</button>
+								<!-- <button type="button" class="btn btn-primary-color2 btn-sm">Checkout</button> -->
 							</div>
 						</div>
 					</div>

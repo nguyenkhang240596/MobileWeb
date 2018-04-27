@@ -1,4 +1,16 @@
 <section  ng-controller="ProductsController" class="section-product-detail" ng-init="findOne()">
+                
+   <!-- Loader -->
+    <div id="page-preloader"><span class="spinner"></span></div>
+    <script src="https://apis.google.com/js/plusone.js">
+                </script>
+                <div class="g-comments"
+                    data-href="http://localhost:3000/products/{{product._id}}"
+                    data-width="580"
+                    data-first_party_property="BLOGGER"
+                    data-view_type="FILTERED_POSTMOD">
+                </div>
+    <!-- Loader end -->
         <div class="b-page-header">
           <div class="container">
             <div class="row">
@@ -7,16 +19,16 @@
                 <div class="b-breadcrumbs pull-right">
                   <ul class="list-unstyled">
                     <li>
-                      <a href="product-details.html">home</a>
+                      <a href="/home">home</a>
                     </li>
                     <li>
-                      <a href="product-details.html">category</a>
+                      <a href="#">category</a>
                     </li>
                     <li>
-                      <a href="product-details.html">apple</a>
+                      <a href="#">apple</a>
                     </li>
                     <li>
-                      <span>iphone 6s</span>
+                      <span>{{product.name}}</span>
                     </li>
                   </ul>
                 </div>
@@ -70,29 +82,24 @@
                           <span class="category-counter">[17]</span>
                         </a>
                       </li>
-                      <li class="more">
-                        <span class="load-more">load more</span>
-                        <ul class="more-list">
-                          <li>
-                            <a href="product-details.html">
-                              <i class="fa fa-caret-square-o-right"></i>
-                              Samsung
-                              <span class="category-counter">[08]</span>
-                            </a>
-                          </li>
-                          <li>
-                            <a href="product-details.html">
-                              <i class="fa fa-caret-square-o-right"></i>
-                              HTC
-                              <span class="category-counter">[39]</span>
-                            </a>
-                          </li>
-                        </ul>
+                      <li>
+                        <a href="product-details.html">
+                          <i class="fa fa-caret-square-o-right"></i>
+                          Samsung
+                          <span class="category-counter">[08]</span>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="product-details.html">
+                          <i class="fa fa-caret-square-o-right"></i>
+                          HTC
+                          <span class="category-counter">[39]</span>
+                        </a>
                       </li>
                     </ul>
                   </div>
                 </div>
-                <div id="accordion2" class="accordion-l-box wow fadeInUp enable-accordion" data-active="0" data-collapsible="true" data-height-style="content">
+    <!--             <div id="accordion2" class="accordion-l-box wow fadeInUp enable-accordion" data-active="0" data-collapsible="true" data-height-style="content">
                   <h3>
                     <span class="heading-line title-accordion-menu-item">browse by</span>
                     <span class="accordion-icon"></span>
@@ -350,7 +357,7 @@
                       </li>
                     </ul>
                   </div>
-                </div>
+                </div> -->
               </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
@@ -361,37 +368,22 @@
               <div class="detail-main">
                 <div class="row">
                   <div class="col-sm-5 product-image wow fadeInLeft">
-                    <ul class="bxslider-product enable-bx-slider" data-pager-custom="#bx-pager" data-controls="false" data-min-slides="1" data-max-slides="1" data-slide-width="0" data-slide-margin="0" data-pager="true" data-mode="horizontal" data-infinite-loop="true">
-                      <li><img src="media/product-detail/1.jpg" alt="/" /></li>
-                      <li><img src="media/product-detail/1.jpg" alt="/" /></li>
-                      <li><img src="media/product-detail/1.jpg" alt="/" /></li>
-                      <li><img src="media/product-detail/1.jpg" alt="/" /></li>
-                      <li><img src="media/product-detail/1.jpg" alt="/" /></li>
-                      <li><img src="media/product-detail/1.jpg" alt="/" /></li>
-                      <li><img src="media/product-detail/1.jpg" alt="/" /></li>
+                    <ul class="bxslider-product enable-bx-slider" data-pager-custom="#bx-pager" data-controls="false" data-min-slides="1" data-max-slides="1" data-slide-width="0" data-slide-margin="0" data-mode="horizontal" data-infinite-loop="true">
+                      <li><img src="https://cdn.fptshop.com.vn/Uploads/Originals/2017/11/10/636459040422660236_1.jpg" alt="/" /></li>
+                      <li><img src="https://cdn.fptshop.com.vn/Uploads/Originals/2017/11/10/636459040422816229_2.jpg" alt="/" /></li>
+                      <li><img src="https://cdn.fptshop.com.vn/Uploads/Originals/2017/11/10/636459040422660236_3.jpg" alt="/" /></li>
+                      <!-- <li><img src="http://templines.rocks/html/sokolcov/ismiler/media/product-detail/1.jpg" alt="/" /></li> -->
                     </ul>
                     <div class="product-image-thumbs">
-                      <ul id="bx-pager" class="pager-custom list-unstyled enable-bx-slider" data-pager-custom="null" data-controls="true" data-min-slides="4" data-max-slides="5" data-slide-width="60" data-slide-margin="5" data-pager="false" data-mode="horizontal" data-infinite-loop="false">
+                      <ul id="bx-pager" class="pager-custom list-unstyled enable-bx-slider" data-pager-custom="null" data-controls="true" data-min-slides="4" data-max-slides="5" data-slide-width="60" data-slide-margin="5"  data-mode="horizontal" data-infinite-loop="false">
                         <li>
-                          <a data-slide-index="0" href="#"><img src="media/product-detail/2.jpg" alt="/" /></a>
+                          <a data-slide-index="0" href="#"><img src="https://cdn.fptshop.com.vn/Uploads/Thumbs/2017/11/10/636459040422660236_1.jpg" alt="/" /></a>
                         </li>
                         <li>
-                          <a data-slide-index="1" href="#"><img src="media/product-detail/3.jpg" alt="/" /></a>
+                          <a data-slide-index="1" href="#"><img src="https://cdn.fptshop.com.vn/Uploads/Thumbs/2017/11/10/636459040422816229_2.jpg" alt="/" /></a>
                         </li>
                         <li>
-                          <a data-slide-index="2" href="#"><img src="media/product-detail/4.jpg" alt="/" /></a>
-                        </li>
-                        <li>
-                          <a data-slide-index="3" href="#"><img src="media/product-detail/2.jpg" alt="/" /></a>
-                        </li>
-                        <li>
-                          <a data-slide-index="4" href="#"><img src="media/product-detail/3.jpg" alt="/" /></a>
-                        </li>
-                        <li>
-                          <a data-slide-index="5" href="#"><img src="media/product-detail/4.jpg" alt="/" /></a>
-                        </li>
-                        <li>
-                          <a data-slide-index="6" href="#"><img src="media/product-detail/5.jpg" alt="/" /></a>
+                          <a data-slide-index="2" href="#"><img src="https://cdn.fptshop.com.vn/Uploads/Thumbs/2017/11/10/636459040422660236_3.jpg" alt="/" /></a>
                         </li>
                       </ul>
                     </div>
@@ -403,7 +395,7 @@
                           <div class="name-item">
                             <div class="card-price-block clearfix">
                               <span class="price-title">Our price</span>
-                              <span class="product-price">$339.00</span>
+                              <span class="product-price">{{product.price}}</span>
                               <span class="product-price-old">$649.00</span>
                               <span class="product-availability pull-right">iN STOCk</span>
                             </div>
@@ -502,9 +494,6 @@
                         <li role="presentation" class="active">
                           <a class="heading-line" href="product-details.html#description" aria-controls="description" role="tab" data-toggle="tab">Description</a>
                         </li>
-                        <li role="presentation">
-                          <a class="heading-line" href="product-details.html#reviews" aria-controls="reviews" role="tab" data-toggle="tab">user Reviews</a>
-                        </li>
                       </ul>
                       <div class="tab-content">
                         <div role="tabpanel" class="tab-pane active" id="description">
@@ -536,98 +525,13 @@
                             Don't forget that as an iPhone 6S user you also get access to the revolutionary App Store that has over 1.3 million apps in 155 countries.
                           </p>
                         </div>
-                        <div role="tabpanel" class="tab-pane" id="reviews">
-                           <div class="b-post-comments wow fadeInUp">
-                            <h3 class="heading-line">Comments <span>[2]</span></h3>
-                            <div class="b-comments-holder">
-                              <div class="comment-item">
-                                <div class="col-sm-1">
-                                  <div class="userpic">
-                                    <span>
-                                      <img src="media/blog/userpics/user1.jpg" class="img-responsive" alt="/">
-                                    </span>
-                                  </div>
-                                </div>
-                                <div class="col-sm-11">
-                                  <div class="comment-body">
-                                    <div class="comment-author">
-                                      <span class="name">William Ben</span>
-                                      <button class="comment-reply pull-right">reply</button>
-                                      <span class="comment-date">december 31, 2015  -  02:36 pm</span>
-                                    </div>
-                                    <div class="comment-text">
-                                      <p>
-                                        Lorem ipsum dolor sit amet consectur adipisicing elitsed do eiusmod tempor incidiant ealnt labore orem ips um dolor sit amet consectetur adipisicing elit eiusmod incididunt. Lorem ipsum dolor sit amet consecteurm adipisicing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                                      </p>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                              <div class="comment-item">
-                                <div class="col-sm-1">
-                                  <div class="userpic">
-                                    <span>
-                                      <img src="media/blog/userpics/user2.jpg" class="img-responsive" alt="/">
-                                    </span>
-                                  </div>
-                                </div>
-                                <div class="col-sm-11">
-                                  <div class="comment-body">
-                                    <div class="comment-author">
-                                      <span class="name">Sara Alex</span>
-                                      <button class="comment-reply pull-right">reply</button>
-                                      <span class="comment-date">december 31, 2015  -  02:36 pm</span>
-                                    </div>
-                                    <div class="comment-text">
-                                      <p>
-                                        Lorem ipsum dolor sit amet consectur adipisicing elitsed do eiusmod tempor incidiant ealnt labore orem ips um dolor sit amet consectetur adipisicing elit eiusmod incididunt. Lorem ipsum dolor sit amet consecteurm adipisicing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                                      </p>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="b-post-reply wow fadeInUp">
-                            <h3 class="heading-line">
-                              leave a reply
-                            </h3>
-                            <form id="comment-reply-form" class="b-form" method="get" action="#">
-                              <div class="form-group">
-                                <div class="b-form-description">
-                                  <p>
-                                    Required fields are marked with *
-                                  </p>
-                                </div>
-                                <div class="row">
-                                  <div class="col-sm-6">
-                                    <div>
-                                      <input type="text" class="form-control" id="form-first-name" placeholder="Name *">
-                                    </div>
-                                    <div>
-                                      <input type="text" class="form-control" id="form-last-name" placeholder="Email *">
-                                    </div>
-                                    <div>
-                                      <input type="text" class="form-control" id="form-subject" placeholder="Website">
-                                    </div>
-                                  </div>
-                                  <div class="col-sm-6">
-                                    <div>
-                                      <textarea id="form-comment" class="form-control" rows="6" placeholder="Comments"></textarea>
-                                    </div>
-                                    <div>
-                                      <button type="submit" class="btn btn-default">Send comment</button>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </form>
-                          </div>
-                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
+                <!-- <div class="row">
+                    <div class="fb-comments" data-href="http://localhost:3000/products/{{product._id}}" data-width="850" data-numposts="10"></div>
+                </div> -->
               </div>
             </div>
           </div>
@@ -635,7 +539,7 @@
         <div class="b-hr custom-hr-1">
           <hr>
         </div>
-        <div class="container">
+      <!--   <div class="container">
           <div class="row">
             <div class="col-sm-12 clearfix">
               <h3 class="heading-line-long">Users also bought</h3>
@@ -654,7 +558,7 @@
                     <div class="b-item-card">
                       <div class="image">
                         <a href="product-details.html">
-                          <img src="media/item-card-media/g84g.jpg" class="img-responsive center-block" alt="/">
+                          <img src="public/template/media/item-card-media/g84g.jpg" class="img-responsive center-block" alt="/">
                         </a>
                         <div class="image-add-mod">
                           <div class="add-description">
@@ -695,7 +599,7 @@
                       </div>
                       <div class="image">
                         <a href="product-details.html">
-                          <img replace src="media/item-card-media/mate-s.jpg" class="img-responsive center-block" alt="/">
+                          <img replace src="public/template/media/item-card-media/mate-s.jpg" class="img-responsive center-block" alt="/">
                         </a>
                         <div class="image-add-mod">
                           <div class="add-description">
@@ -736,7 +640,7 @@
                       </div>
                       <div class="image">
                         <a href="product-details.html">
-                          <img src="media/item-card-media/xperia.jpg" class="img-responsive center-block" alt="/">
+                          <img src="public/template/media/item-card-media/xperia.jpg" class="img-responsive center-block" alt="/">
                         </a>
                         <div class="image-add-mod">
                           <div class="add-description">
@@ -775,7 +679,7 @@
                     <div class="b-item-card">
                       <div class="image">
                         <a href="product-details.html">
-                          <img src="media/item-card-media/mi41.jpg" class="img-responsive center-block" alt="/">
+                          <img src="public/template/media/item-card-media/mi41.jpg" class="img-responsive center-block" alt="/">
                         </a>
                         <div class="image-add-mod">
                           <div class="add-description">
@@ -814,50 +718,5 @@
               </div>
             </div>
           </div>
-        </div>
-        <div class="b-hr">
-          <hr>
-        </div>
-        <div class="container">
-          <div class="row">
-            <div class="col-sm-12 wow fadeInUp">
-              <div class="b-brands-holder">
-                <div class="b-store-features b-brands-logos clearfix">
-                  <ul id="brands-slide" class="list-unstyled enable-owl-carousel" data-loop="true" data-auto-width="false" data-dots="true" data-nav="false" data-margin="0" data-responsive-class="true" data-responsive='{"0":{"items": "1"},"479":{"items": "2"},"992":{"items": "3"},"1199":{"items":"6","autoWidth":"true"}}' data-slider-next="" data-slider-prev="">
-                    <li>
-                      <a href="product-details.html">
-                        <img src="media/brand-logos/rick.png" class="img-responsive center-block" alt="/">
-                      </a>
-                    </li>
-                    <li>
-                      <a href="product-details.html">
-                        <img src="media/brand-logos/mike.png" class="img-responsive center-block" alt="/">
-                      </a>
-                    </li>
-                    <li>
-                      <a href="product-details.html">
-                        <img src="media/brand-logos/sa.png" class="img-responsive center-block" alt="/">
-                      </a>
-                    </li>
-                    <li>
-                      <a href="product-details.html">
-                        <img src="media/brand-logos/gone.png" class="img-responsive center-block" alt="/">
-                      </a>
-                    </li>
-                    <li>
-                      <a href="product-details.html">
-                        <img src="media/brand-logos/xmob.png" class="img-responsive center-block" alt="/">
-                      </a>
-                    </li>
-                    <li>
-                      <a href="product-details.html">
-                        <img src="media/brand-logos/roman.png" class="img-responsive center-block" alt="/">
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        </div> -->
       </section>

@@ -15,7 +15,6 @@ angular
 		// Find a list of Brands
 		$scope.find = function () {
 			$scope.brands = BrandsService.query();
-			console.log(BrandsService.query(), 2);
 		};
 	}
 ]);

@@ -145,7 +145,7 @@ a {
 /* header */
 
 header .b-top-line {
-    padding: 12px 0;
+    /*padding: 12px 0;*/
     text-transform: uppercase;
 }
 
@@ -1561,6 +1561,12 @@ textarea {
     padding: 9px 20px;
 }
 
+.b-cart .cart-products img {
+    width: 70px;
+    height: 70px;
+}
+
+
 .b-cart:hover #cart .price {
     color: #fff;
 }
@@ -1639,7 +1645,7 @@ textarea {
 /* page header */
 
 .b-page-header {
-    background: url("../images/page-header-bg.jpg") repeat-x;
+    background: url("../media/header/page-header-bg.jpg") repeat-x;
     height: 150px;
     margin-bottom: 59px;
     border-bottom: 1px solid #eeeeee;

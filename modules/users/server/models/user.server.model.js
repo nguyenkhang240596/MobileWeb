@@ -97,8 +97,12 @@ var UserSchema = new Schema({
   },
   resetPasswordExpires: {
     type: Date
-  }
-});
+  },
+  cart : [{
+      type: Schema.ObjectId,
+      ref: 'Cart'
+  }],
+}, { versionKey : false });
 
 /**
  * Hook a pre save method to hash the password
