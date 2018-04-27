@@ -1,0 +1,166 @@
+<section ng-controller="HomeController" ng-init="loadCart()">
+		<div id="page-preloader"><span class="spinner"></span></div>
+
+			<div class="b-page-header">
+				<div class="container">
+					<div class="row">
+						<div class="col-sm-12 clearfix">
+							<h3 class="page-title pull-left">shopping cart</h3>
+							<div class="b-breadcrumbs pull-right">
+								<ul class="list-unstyled">
+									<li>
+										<a href="#">home</a>
+									</li>
+									<li>
+										<span>shopping cart</span>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-12 cart-table wow fadeInUp">
+						<div class="b-table b-cart-table table-responsive">
+							<table class="table">
+								<thead>
+									<tr>
+										<td>
+											<span>cart items <span class="counter">{{countCartItem}}</span></span>
+										</td>
+										<td>
+											<span>unit price</span>
+										</td>
+										<td>
+											<span>Quantity</span>
+										</td>
+										<td>
+											<span>sub total</span>
+										</td>
+										<td>
+											<span>Remove</span>
+										</td>
+									</tr>
+								</thead>
+								<tbody>
+									<tr ng-repeat="cart in carts">
+										<td>
+											<div class="image">
+												<img src="{{cart.productId.image}}" class="img-responsive img-thumbnail center-block" alt="6s">
+											</div>
+											<div class="caption">
+												<a class="product-name" href="#">{{cart.productId.name}}</a>
+												<div class="product-options">
+													<p class="opt-color">color: <span>rose gold</span></p>
+													<p class="availability"><span>In stock</span></p>
+												</div>
+												<button type="button" class="btn btn-add-wish"><i class="fa fa-heart-o"></i> move to wishlist</button>
+											</div>
+										</td>
+										<td>
+											<span class="product-price">${{cart.productId.price}}</span>
+										</td>
+										<td>
+											<div class="input-group btn-block qty-block" data-trigger="spinner">
+												<a ng-click="subQuantity(cart.quantity, cart._id)" class="spinner-btn-mod" href="javascript:;" data-spin="down">-</a><input class="form-control" type="text" value="{{cart.quantity}}" data-rule="quantity" style="width: 55px">
+												<a ng-click="addQuantity(cart._id)"  class="spinner-btn-mod" href="javascript:;" data-spin="up">+</a>
+											</div>
+										</td>
+										<td>
+											<span class="product-price total-price">${{cart.quantity * cart.productId.price}}</span>
+										</td>
+										<td class="text-left">
+											<button class="btn btn-remove"><i class="fa fa-trash fa-lg"></i></button>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<button onclick="document.location.href=this.getAttribute('href');" href="/" class="btn btn-default-color1 btn-continue btn-sm">continue shopping</button>
+					</div>
+					<div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 wow fadeInLeft">
+						<form id="tax-discount-form" class="b-form b-form-add" method="get" action="#">
+							<ul class="nav nav-tabs" role="tablist">
+								<li role="presentation" class="active">
+									<a class="heading-line" href="shopping-cart.html#tax" aria-controls="tax" role="tab" data-toggle="tab">estimate shipping & tax</a>
+								</li>
+								<li role="presentation">
+									<a class="heading-line" href="shopping-cart.html#discount" aria-controls="discount" role="tab" data-toggle="tab">Discount code</a>
+								</li>
+							</ul>
+							<div class="tab-content">
+								<div role="tabpanel" class="tab-pane active" id="tax">
+									<div class="form-group">
+										<div class="b-form-description">
+											<p>
+												Choose your destination and get a shipping & tax estimate.
+											</p>
+										</div>
+										<div class="row">
+											<div class="col-sm-6">
+												<select class="selectpicker" data-width="100%" title="Country">
+													<option>VietNam</option>
+													<option>Singapore</option>
+												</select>
+											</div>
+											<div class="col-sm-6">
+												<select class="selectpicker" data-width="100%" title="State / province">
+													<option>AnGiang</option>
+													<option>HaNoi</option>
+													<option>HoChiMinh</option>
+												</select>
+											</div>
+											<div class="col-sm-6">
+												<input type="text" class="form-control" id="form-zip-postal" placeholder="Zip / postal code">
+											</div>
+											<div class="col-sm-6">
+												<button type="submit" class="btn btn-default">get estimate</button>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div role="tabpanel" class="tab-pane" id="discount">
+									<div class="form-group">
+										<div class="row">
+											<div class="col-sm-12">
+												<input type="text" class="form-control" id="form-last-name" placeholder="Enter Code">
+											</div>
+											<div class="col-sm-12">
+												<button type="submit" class="btn btn-default">submit code</button>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</form>
+					</div>
+					<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 wow fadeInRight">
+						<div class="b-total-table clearfix">
+							<table class="table table-condensed">
+								<tbody>
+									<tr>
+										<td>Cart Subtotal</td>
+										<td>${{sumPrice}}</td>
+									</tr>
+									<tr>
+										<td>Shipping + Handling</td>
+										<td>$50.00</td>
+									</tr>
+									<tr class="pre-total">
+										<td>Tax Charges</td>
+										<td>$20.00</td>
+									</tr>
+									<tr class="total">
+										<td>grand total</td>
+										<td>${{(sumPrice + 70)}}</td>
+									</tr>
+								</tbody>
+							</table>
+							<button class="btn btn-primary-color2 btn-sm">proceed to chceckout</button>
+						</div>
+					</div>
+				</div>
+			</div>
+</section>      
