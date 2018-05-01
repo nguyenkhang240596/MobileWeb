@@ -79,6 +79,22 @@ angular.module('core').controller('HomeController', ['$scope', '$state', '$http'
       }
     }
 
-
+    $scope.removeCart = function(e, cartId) {
+      let carts = $scope.carts;
+      for(let i in $scope.carts) {
+        if (carts[i]._id == cartId) {
+          $scope.carts.splice(i, 1)
+          $http.post('/api/users/updatecart', { cart : carts }).success(function (response) {
+            // If successful show success message and clear form
+            $scope.success = true;
+            $scope.loadCart()
+            $(e.target.parentElement.parentElement.parentElement).remove()
+          }).error(function (response) {
+            $scope.error = response.message;
+          });
+          break;
+        }
+      }
+    }
   }
 ]);

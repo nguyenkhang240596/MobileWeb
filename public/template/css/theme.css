@@ -5538,6 +5538,13 @@ footer.style-2 .footer-socials .b-socials li a:hover {
     border-top-color: #fff;
 }
 
+
+.owl-carousel .owl-item {
+  width: 200px !important;
+  vertical-align: middle;
+  display: inline-block;
+}
+
 @-webkit-keyframes spin {
     0% {
         -webkit-transform: rotate(0);

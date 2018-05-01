@@ -48,10 +48,12 @@
 									<tr ng-repeat="cart in carts">
 										<td>
 											<div class="image">
-												<img src="{{cart.productId.image}}" class="img-responsive img-thumbnail center-block" alt="6s">
+												<a ui-sref="products.view({   productId: cart.productId._id })">
+					                                <img src="{{cart.productId.image}}" class="img-responsive img-thumbnail center-block" alt="/">
+				                                </a>
 											</div>
 											<div class="caption">
-												<a class="product-name" href="#">{{cart.productId.name}}</a>
+												<a class="product-name" ui-sref="products.view({   productId: cart.productId._id })">{{cart.productId.name}}</a>
 												<div class="product-options">
 													<p class="opt-color">color: <span>rose gold</span></p>
 													<p class="availability"><span>In stock</span></p>
@@ -72,7 +74,7 @@
 											<span class="product-price total-price">${{cart.quantity * cart.productId.price}}</span>
 										</td>
 										<td class="text-left">
-											<button class="btn btn-remove"><i class="fa fa-trash fa-lg"></i></button>
+											<button class="btn btn-remove" ng-click="removeCart($event, cart._id)"><i class="fa fa-trash fa-lg"></i></button>
 										</td>
 									</tr>
 								</tbody>

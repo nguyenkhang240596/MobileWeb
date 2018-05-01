@@ -19,6 +19,17 @@ exports.renderServerError = function (req, res) {
 };
 
 /**
+ * Webhook
+ */
+exports.webHook = function (req, res) {
+    if (req.query['hub.verify_token'] === 'my_password') {
+      res.send(req.query['hub.challenge'])
+    }
+    res.send('wrong token,error')
+};
+
+
+/**
  * Render the server not found responses
  * Performs content-negotiation on the Accept HTTP header
  */
