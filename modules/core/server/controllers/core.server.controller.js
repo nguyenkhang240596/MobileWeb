@@ -22,12 +22,27 @@ exports.renderServerError = function (req, res) {
  * Webhook
  */
 exports.webHook = function (req, res) {
+  console.log(req.query['hub.verify_token'], req.query['hub.verify_token'] === 'my_password')
     if (req.query['hub.verify_token'] === 'my_password') {
-      res.send(req.query['hub.challenge'])
+      return res.send(req.query['hub.challenge'])
     }
-    res.send('wrong token,error')
+    return res.send('wrong token,error')
 };
 
+// to post data
+exports.receiveDataWebHook = function (req, res) {
+  let changes_events = req.body.entry[0].changes
+    for (let i = 0; i < changes_events.length; i++) {
+      let event = req.body.entry[0].changes[i]
+      let val = event.value
+      if (val.message) {
+        console.log(val)
+        console.log(val.from)
+        console.log(val.message)
+      }
+    }
+  res.sendStatus(200)
+}
 
 /**
  * Render the server not found responses

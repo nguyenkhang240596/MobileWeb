@@ -7,11 +7,13 @@ module.exports = function (app) {
   // Define error pages
   app.route('/server-error').get(core.renderServerError);
 
+  //
+  app.route('/webhook').get(core.webHook);
+  app.route('/webhook').post(core.receiveDataWebHook);
+
   // Return a 404 for all undefined api, module or lib routes
   app.route('/:url(api|modules|lib)/*').get(core.renderNotFound);
 
-//
-  app.route('/webhook', core.webHook);
 
 
   // Define application route
