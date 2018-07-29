@@ -16,13 +16,11 @@ var BrandSchema = new Schema({
     required: 'Please fill Brand name',
     trim: true
   },
+  image: String,
+  tag: String,
   created: {
     type: Date,
     default: Date.now
-  },
-  user: {
-    type: Schema.ObjectId,
-    ref: 'User'
   }
 });
 
