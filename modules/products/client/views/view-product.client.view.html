@@ -1,16 +1,7 @@
+
 <section  ng-controller="ProductsController" class="section-product-detail" ng-init="findOne()">
-                
    <!-- Loader -->
     <div id="page-preloader"><span class="spinner"></span></div>
-<!--     <script src="https://apis.google.com/js/plusone.js">
-                </script>
-                <div class="g-comments"
-                    data-href="http://localhost:3000/products/{{product._id}}"
-                    data-width="580"
-                    data-first_party_property="BLOGGER"
-                    data-view_type="FILTERED_POSTMOD">
-                </div> -->
-    <!-- Loader end -->
         <div class="b-page-header">
           <div class="container">
             <div class="row">
@@ -538,8 +529,12 @@
                   </div>
                 </div>
                 <div class="row">
-                    <div class="fb-comments" data-href="http://localhost:3000/products/{{product._id}}" data-width="850" data-numposts="10"></div>
+                    <div class="fb-comments" data-href="{{this.location.href}}" data-width="850" data-numposts="10"></div>
                 </div>
+<!-- 
+                  <div class="fb-comments" data-href="http://localhost:3000/products/{{product._id}}" data-width="850" data-numposts="10"></div>
+                </div>
+                 -->
               </div>
             </div>
           </div>

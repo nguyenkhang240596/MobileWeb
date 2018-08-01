@@ -40,6 +40,8 @@ exports.receiveDataWebHook = function (req, res) {
 
   console.log(req.body)
   let changes_events = req.body.entry[0].changes
+  console.log(changes_events)
+  console.log(changes_events[0].from)
     for (let i = 0; i < changes_events.length; i++) {
       let event = req.body.entry[0].changes[i]
       let val = event.value
@@ -56,7 +58,7 @@ exports.receiveDataWebHook = function (req, res) {
             console.log("successful save comment")
           }
         });
-        console.log(comment)
+        // console.log(comment)
       }
     }
 

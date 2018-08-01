@@ -58,8 +58,42 @@
     }
 
     angular.element(document).ready(function() {
-          FB.XFBML.parse();
+          // FB.XFBML.parse();
+        FB.init({
+            appId:  '566972150348724',
+            status: true,
+            // cookie: true,
+            xfbml:  true,
+            // oauth: true,
+            version: 'v3.1'
+        });
+        // FB.XFBML.parse(); 
    });
     initService.init();
+
+    // window.fbAsyncInit = function() {
+    //   console.log("a")
+    //     FB.init({
+    //         appId:  '566972150348724',
+    //         status: true,
+    //         cookie: true,
+    //         xfbml:  true,
+    //         oauth: true
+    //     });
+    //     FB.XFBML.parse(); 
+    //     console.log("load comment")
+    //     // // AND THOSE WILL FIRE THE EVENTS :)
+
+    //     // FB.Event.subscribe('comment.create',
+    //     //     function (response) {
+    //     //         console.log('create', response);
+    //     //     });
+    //     // FB.Event.subscribe('comment.remove',
+    //     //     function (response) {
+    //     //        console.log('remove', response);
+    //     //     });
+
+    // };
   } 
+
 }());
