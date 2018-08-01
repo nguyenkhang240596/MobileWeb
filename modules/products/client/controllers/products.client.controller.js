@@ -68,6 +68,10 @@
             version: 'v3.1'
         });
         // FB.XFBML.parse(); 
+        FB.Event.subscribe('comment.create',
+            function (response) {
+                console.log('create', response);
+            });
    });
     initService.init();
 
@@ -84,10 +88,10 @@
     //     console.log("load comment")
     //     // // AND THOSE WILL FIRE THE EVENTS :)
 
-    //     // FB.Event.subscribe('comment.create',
-    //     //     function (response) {
-    //     //         console.log('create', response);
-    //     //     });
+        // FB.Event.subscribe('comment.create',
+        //     function (response) {
+        //         console.log('create', response);
+        //     });
     //     // FB.Event.subscribe('comment.remove',
     //     //     function (response) {
     //     //        console.log('remove', response);
