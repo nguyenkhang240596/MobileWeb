@@ -173,9 +173,9 @@
                             </div>
                             <div class="rating">
                               <div >
-                                  <a id="top-review" class="product-review" href="#">Top Reviews</a>
+                                  <a id="top-review" class="product-review" href="#">Watch Reviews</a>
                                   <span class="product-review-no-color">(</span>
-                                  <span id="review-percent" class="product-review-percent">{{percentage}}</span>
+                                  <span id="review-percent" class="product-review-percent">{{percentage.toString() == "NaN%" ? "0 Review" : percentage}}</span>
                                    <span class="product-review-no-color">)</span>
                               </div>
                             </div>

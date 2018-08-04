@@ -5592,7 +5592,7 @@ footer.style-2 .footer-socials .b-socials li a:hover {
 }
 
 #popup-top-review { 
-    /*display: none;   */
+    display: none;   
     height: 100%;
     width: 100%;
     position: fixed;
