@@ -62,7 +62,7 @@ exports.receiveDataWebHook = function (req, res) {
                     if (!err) {
                       console.log(comment)
                     } else {
-                      console.log("error when save comment")
+                      console.log("error when save comment", err)
                     }
                   })
               })
@@ -108,6 +108,7 @@ exports.receiveDataWebHook = function (req, res) {
         data += chunk;
       });
       resp.on('end', () => {
+        console.log(data)
         let regex = new Regex(/(products)(\\\\u)(.*)(\\\\u)(.*)(fb_comment_id)/);
         let productId = data.split('\\')[9].replace("u00252F", "")
         callback(productId)
