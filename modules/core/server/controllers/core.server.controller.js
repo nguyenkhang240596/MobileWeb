@@ -111,7 +111,7 @@ exports.receiveDataWebHook = function (req, res) {
         console.log(data)
         // let regex = new Regex(/(products)(\\\\u)(.*)(\\\\u)(.*)(fb_comment_id)/);
         // let productId = data.split('\\')[9].replace("u00252F", "")
-        let productId = data. replace(/(%2F|%3F)/g, "--").split("--")[4]
+        let productId = data.replace(/(%2F|%3F)/g, "--").split("--")[4]
         console.log(productId)
         callback(productId)
       });

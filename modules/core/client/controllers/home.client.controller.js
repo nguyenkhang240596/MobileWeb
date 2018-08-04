@@ -120,9 +120,10 @@ angular.module('core').controller('HomeController', ['$scope', '$state', '$http'
       }).success(function (response) {
         // If successful show success message and clear form
         $scope.success = true;
-        var headerScope = angular.element(document.getElementById('mHeader')).scope()
-        console.log("addProductToCart")
-        headerScope.loadCart()
+        // var headerScope = angular.element(document.getElementById('mHeader')).scope()
+        // console.log("addProductToCart")
+        // headerScope.loadCart()
+        $scope.loadCart();
         // alert("Đã thêm vào sản phẩm vào giỏ hàng")
       }).error(function (response) {
         $scope.error = response.message;

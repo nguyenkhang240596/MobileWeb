@@ -89,9 +89,7 @@
         }
       }
       $scope.percentage = Math.floor((success / arr.length) * 100) + "%"
-      setTimeout(function(){ 
-        $("#popup-top-review").css({'display' : 'block'})
-      }, 100);
+
     }
 
     $scope.eventProcessing = function() {
@@ -103,6 +101,9 @@
           })
           mPromise.$promise.then(arr => {
             $scope.updateUI(arr)
+            setTimeout(function(){ 
+              $("#popup-top-review").css({'display' : 'block'})
+            }, 100);
           })
 
           
@@ -158,14 +159,48 @@
       }).success(function (response) {
         // If successful show success message and clear form
         $scope.success = true;
-        var headerScope = angular.element(document.getElementById('mHeader')).scope()
-        headerScope.loadCart()
+        // var headerScope = angular.element(document.getElementById('mHeader')).scope()
+        // headerScope.loadCart()
+
+        $scope.loadCart();
         // alert("Đã thêm vào sản phẩm vào giỏ hàng")
       }).error(function (response) {
         $scope.error = response.message;
       });
     };
 
+    $scope.loadCart = function() {
+      $http.get('/api/users/getcart').success(function (response) {
+        // If successful show success message and clear form
+        console.log(response)
+        $scope.success = true;
+        $scope.carts = response;
+        var sumPrice = 0;
+        var total = 0
+        for(var i of $scope.carts) {
+          sumPrice += i.quantity * i.productId.price;
+          total += i.quantity
+        }
+        $scope.sumPrice = sumPrice;
+
+        //fee charge
+        // $scope.sumPrice += 70;
+        $scope.countCartItem = total;
+
+        // $("#cart-wrapper .counter").html
+        $('.total td:nth-child(2)').text((sumPrice+$scope.shipping) + " VND")
+        $("#cart-wrapper .counter").text(total)
+        $("#sumPrice").text(sumPrice)
+        console.log($scope.carts)
+      }).error(function (response) {
+
+        $scope.error = response.message;
+      });
+    }
+    if ($scope.user) {
+      $scope.loadCart();
+    }
+    
     $scope.comments = []
     $scope.commentLength = 0;
     $scope.initLoadData()
@@ -199,31 +234,15 @@
         //         console.log('create', response);
         // });
    });
-    initService.init();
 
-    // window.fbAsyncInit = function() {
-    //   console.log("a")
-    //     FB.init({
-    //         appId:  '566972150348724',
-    //         status: true,
-    //         cookie: true,
-    //         xfbml:  true,
-    //         oauth: true
-    //     });
-    //     FB.XFBML.parse(); 
-    //     console.log("load comment")
-    //     // // AND THOSE WILL FIRE THE EVENTS :)
+    // initService.init();
 
-        // FB.Event.subscribe('comment.create',
-        //     function (response) {
-        //         console.log('create', response);
-        //     });
-    //     // FB.Event.subscribe('comment.remove',
-    //     //     function (response) {
-    //     //        console.log('remove', response);
-    //     //     });
+    if (!$scope.initServer) {
+      $scope.initServer = true;
+      console.log("init server")
+      initService.init();
+    }
 
-    // };
   } 
 
 }());

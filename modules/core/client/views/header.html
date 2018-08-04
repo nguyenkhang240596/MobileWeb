@@ -1,4 +1,5 @@
-<div id="mHeader" class="b-top-line ng-scope" ng-controller="HomeController as vm">
+<div ng-controller="HeaderController as vm">
+<div id="mHeader" class="b-top-line ng-scope" >
 	<div class="container">
 		<div class="row">
 			<ul class="nav navbar-nav navbar-right" ng-hide="authentication.user">
@@ -39,67 +40,68 @@
 		</div>
 	</div>
 </div>
-<div class="b-header-main" ng-controller="HomeController">
-	<div class="container">
-		<div class="row">
-			<div class="col-xs-6 col-sm-2 col-md-2 col-lg-2">
-				<div class="b-logo">
-					<a href="/">
-						<span>iSmile</span>
-						<br>
-						<span>store</span>
-					</a>
+	<div class="b-header-main" >
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-6 col-sm-2 col-md-2 col-lg-2">
+					<div class="b-logo">
+						<a href="/">
+							<span>iSmile</span>
+							<br>
+							<span>store</span>
+						</a>
+					</div>
 				</div>
-			</div>
-			<div id="toggle-nav" class="col-xs-12 col-sm-10 col-md-8 col-lg-8 menu-wrapper clearfix">
-			</div>
-			<div id="cart-wrapper" class="col-xs-6 col-sm-12 col-md-2 col-lg-2"
-				ng-show="authentication.user">
-				<div class="b-cart pull-right">
-					<button id="cart" class="btn btn-default-color1 btn-sm">
-						<span class="price"><i class="fa fa-shopping-bag"></i> </span>
-						<span id="sumPrice">$ {{sumPrice}}</span>
-						<span class="counter-wrapper"><span class="counter">{{countCartItem}}</span></span>
-					</button>
-					<div class="cart-products">
-						<div class="c-holder">
-							<h3 class="title">
-								my shopping cart
-							</h3>
-							<ul style="overflow:scroll; height:400px;" class="products-list list-unstyled">
-								<li ng-repeat="cart in carts" >
-									<div class="b-cart-table ">
-										<a href="#" class="image">
-											<img src="{{cart.productId.image}}" alt="/">
-										</a>
-										<div class="caption">
-											<a class="product-name" href="http://localhost:3000/products/{{cart.productId._id}}">{{cart.productId.name}}</a>
-											<span class="product-price">{{cart.quantity}} x ${{cart.productId.price}}</span>
+				<div id="toggle-nav" class="col-xs-12 col-sm-10 col-md-8 col-lg-8 menu-wrapper clearfix">
+				</div>
+				<div id="cart-wrapper" class="col-xs-6 col-sm-12 col-md-2 col-lg-2"
+					ng-show="authentication.user">
+					<div class="b-cart pull-right">
+						<button id="cart" class="btn btn-default-color1 btn-sm">
+							<span class="price"><i class="fa fa-shopping-bag"></i> </span>
+							<span id="sumPrice">$ {{sumPrice}}</span>
+							<span class="counter-wrapper"><span class="counter">{{countCartItem}}</span></span>
+						</button>
+						<div class="cart-products">
+							<div class="c-holder">
+								<h3 class="title">
+									my shopping cart
+								</h3>
+								<ul style="overflow:scroll; height:400px;" class="products-list list-unstyled">
+									<li ng-repeat="cart in carts" >
+										<div class="b-cart-table ">
+											<a href="#" class="image">
+												<img src="{{cart.productId.image}}" alt="/">
+											</a>
+											<div class="caption">
+												<a class="product-name" href="http://localhost:3000/products/{{cart.productId._id}}">{{cart.productId.name}}</a>
+												<span class="product-price">{{cart.quantity}} x ${{cart.productId.price}}</span>
+											</div>
+											<button class="btn btn-remove" ng-click="removeCart($event, cart._id)"><i class="fa fa-trash fa-lg"></i></button>
 										</div>
-										<button class="btn btn-remove" ng-click="removeCart($event, cart._id)"><i class="fa fa-trash fa-lg"></i></button>
-									</div>
-								</li>
-								<!-- <li>
-									<div class="b-cart-table ">
-										<a ui-sref="products.view({   productId: product._id })" class="image">
-											<img src="template/media/cart-products/product1.jpg" alt="/">
-										</a>
-										<div class="caption">
-											<a class="product-name" href="product-details.html">{{productId.name}}</a>
-											<span class="product-price">1 x $280.00</span>
+									</li>
+									<!-- <li>
+										<div class="b-cart-table ">
+											<a ui-sref="products.view({   productId: product._id })" class="image">
+												<img src="template/media/cart-products/product1.jpg" alt="/">
+											</a>
+											<div class="caption">
+												<a class="product-name" href="product-details.html">{{productId.name}}</a>
+												<span class="product-price">1 x $280.00</span>
+											</div>
+											<button class="btn btn-remove"><i class="fa fa-trash fa-lg"></i></button>
 										</div>
-										<button class="btn btn-remove"><i class="fa fa-trash fa-lg"></i></button>
-									</div>
-								</li> -->
-								<li>
-									<div class="products-subtotal text-right">
-										Cart Subtotal <span class="subtotal-price">${{sumPrice}}</span>
-									</div>
-								</li>
-							</ul>
-							<div class="products-buttons text-center">
-								<button onclick="document.location.href=this.getAttribute('href');" href="/cart" type="button" class="btn btn-default-color1 btn-sm">view cart</button>
-								<!-- <button type="button" class="btn btn-primary-color2 btn-sm">Checkout</button> -->
+									</li> -->
+									<li>
+										<div class="products-subtotal text-right">
+											Cart Subtotal <span class="subtotal-price">${{sumPrice}}</span>
+										</div>
+									</li>
+								</ul>
+								<div class="products-buttons text-center">
+									<button onclick="document.location.href=this.getAttribute('href');" href="/cart" type="button" class="btn btn-default-color1 btn-sm">view cart</button>
+									<!-- <button type="button" class="btn btn-primary-color2 btn-sm">Checkout</button> -->
+								</div>
 							</div>
 						</div>
 					</div>
