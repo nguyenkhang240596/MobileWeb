@@ -12,7 +12,12 @@ var mongoose = require('mongoose'),
 var CommentSchema = new Schema({
   facebookId : String,
   senderName : String,
+  productId : {
+  	type : Schema.ObjectId,
+  	ref : 'Product'
+  },
   commentId : String,
+  sentiment : String,
   content : String,
   created_time : {
     type: Date,

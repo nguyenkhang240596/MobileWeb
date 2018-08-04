@@ -1,4 +1,4 @@
-<div id="mHeader" class="b-top-line ng-scope" ng-controller="HeaderController">
+<div id="mHeader" class="b-top-line ng-scope" ng-controller="HeaderController as vm">
 	<div class="container">
 		<div class="row">
 			<ul class="nav navbar-nav navbar-right" ng-hide="authentication.user">
@@ -73,7 +73,7 @@
 											<img src="{{cart.productId.image}}" alt="/">
 										</a>
 										<div class="caption">
-											<a class="product-name" href="product-details.html">{{cart.productId.name}}</a>
+											<a class="product-name" href="http://localhost:3000/products/{{cart.productId._id}}">{{cart.productId.name}}</a>
 											<span class="product-price">{{cart.quantity}} x ${{cart.productId.price}}</span>
 										</div>
 										<button class="btn btn-remove" ng-click="removeCart($event, cart._id)"><i class="fa fa-trash fa-lg"></i></button>

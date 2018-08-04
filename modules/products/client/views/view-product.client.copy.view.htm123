@@ -1,91 +1,5 @@
 
 <section  ng-controller="ProductsController" class="section-product-detail" ng-init="findOne()">
-    <div id="popup-top-review">
-      <div id="top-review-content">
-        <div class="b-post-comments wow fadeInUp">
-          <button class="close-button-review">X</button>
-          <div>
-                <br>
-                <h3 class="heading-top-review">Watch Reviews<span> [ {{vm.commentLength}} ]</span></h3>
-          </div>
-                <div class="b-comments-holder">
-                  <div class="comment-item" ng-repeat="comment in vm.comments">
-                      <div class="col-sm-1"></div>
-                    <div class="col-sm-1">
-                      <div class="userpic">
-                        <span>
-                          <img src="http://graph.facebook.com/2082919741944556/picture?type=square" class="img-responsive" alt="/">
-                        </span>
-                      </div>
-                    </div>
-                    <div class="col-sm-9">
-                          <!-- <span class="comment-sentiment">câu khen</span> -->
-                      <span ng-if="comment.sentiment=='câu khen'" class="comment-sentiment" style="color: #428d00;"> {{comment.sentiment}}
-                      </span>
-                      <span ng-if="comment.sentiment=='câu chưa biết' || comment.sentiment=='câu bình thường'" class="comment-sentiment" style="color: #ffc410;"> {{comment.sentiment}}
-                      </span>
-                      <span ng-if="comment.sentiment=='câu chê'" class="comment-sentiment" style="color: #ff0000;">
-                      {{comment.sentiment}}</span>
-                      <div class="comment-body comment-all-content">
-                        <div class="comment-author">
-                          <span class="name comment-sender">{{comment.senderName}}</span>
-                          <span> đã đăng vào lúc </span>
-                          <span class="comment-date">{{vm.formatDate(comment.created_time)
-                        }}</span>
-                        </div>
-                        <div class="comment-text">
-                          <p class="comment-sentiment-content">{{comment.content}}
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                 <!--  <div class="comment-item">
-                    <div class="col-sm-1">
-                      <div class="userpic">
-                        <span>
-                          <img src="media/blog/userpics/user2.jpg" class="img-responsive" alt="/">
-                        </span>
-                      </div>
-                    </div>
-                    <div class="col-sm-11">
-                      <div class="comment-body">
-                        <div class="comment-author">
-                          <span class="name">Sara Alex</span>
-                          <button class="comment-reply pull-right">Khen</button>
-                          <span class="comment-date">december 31, 2015  -  02:36 pm</span>
-                        </div>
-                        <div class="comment-text">
-                          <p>
-                            Lorem ipsum dolor sit amet consectur adipisicing elitsed do eiusmod tempor incidiant ealnt labore orem ips um dolor sit amet consectetur adipisicing elit eiusmod incididunt. Lorem ipsum dolor sit amet consecteurm adipisicing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </div> -->
-                </div>
-              </div>
-      </div>
-      <!--   <div>
-          <h1>Top Reviews</h1>
-        </div>
-        <div class="list-group">
-          <a ng-repeat="product in vm.products"
-             class="list-group-item">
-            <small class="list-group-item-text">
-              Posted on
-              <span ng-bind="product.created | date:'mediumDate'"></span>
-              by
-              <span ng-if="product.user" ng-bind="product.user.displayName"></span>
-              <span ng-if="!product.user">Deleted User</span>
-            </small>
-            <h4 class="list-group-item-heading" ng-bind="product.name"></h4>
-          </a>
-        </div> -->
-       <!--  <div class="alert alert-warning text-center" ng-if="vm.products.$resolved && !vm.products.length">
-          No Products yet, why don't you <a ui-sref="products.create">create one</a>?
-        </div> -->
-      </div>
    <!-- Loader -->
     <div id="page-preloader"><span class="spinner"></span></div>
         <div class="b-page-header">
@@ -115,6 +29,328 @@
         </div>
         <div class="container">
           <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+              <div class="lb-content lb-content-accordion">
+            <!--     <div id="accordion" class="accordion-l-box wow fadeInUp enable-accordion" data-active="0" data-collapsible="true" data-height-style="content">
+                  <h3 class="accordion-header-mod">
+                    <span class="heading-line title-accordion-menu-item">Category</span>
+                    <span class="accordion-icon"></span>
+                  </h3>
+                  <div>
+                    <ul>
+                      <li class="active">
+                        <a href="product-details.html">
+                          <i class="fa fa-caret-square-o-right"></i>
+                          Apple iPhone
+                          <span class="category-counter">[25]</span>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="product-details.html">
+                          <i class="fa fa-caret-square-o-right"></i>
+                          Samsung
+                          <span class="category-counter">[08]</span>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="product-details.html">
+                          <i class="fa fa-caret-square-o-right"></i>
+                          HTC
+                          <span class="category-counter">[39]</span>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="product-details.html">
+                          <i class="fa fa-caret-square-o-right"></i>
+                          Blackberry
+                          <span class="category-counter">[50]</span>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="product-details.html">
+                          <i class="fa fa-caret-square-o-right"></i>
+                          Huawei
+                          <span class="category-counter">[17]</span>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="product-details.html">
+                          <i class="fa fa-caret-square-o-right"></i>
+                          Samsung
+                          <span class="category-counter">[08]</span>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="product-details.html">
+                          <i class="fa fa-caret-square-o-right"></i>
+                          HTC
+                          <span class="category-counter">[39]</span>
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </div> -->
+    <!--             <div id="accordion2" class="accordion-l-box wow fadeInUp enable-accordion" data-active="0" data-collapsible="true" data-height-style="content">
+                  <h3>
+                    <span class="heading-line title-accordion-menu-item">browse by</span>
+                    <span class="accordion-icon"></span>
+                  </h3>
+                  <div>
+                    <ul>
+                      <li>
+                        <a href="product-details.html">
+                          <i class="fa fa-caret-square-o-right"></i>
+                          All Brands
+                        </a>
+                      </li>
+                      <li class="active">
+                        <a href="product-details.html">
+                          <i class="fa fa-caret-square-o-right"></i>
+                          New Arrivals
+                        </a>
+                      </li>
+                      <li>
+                        <a href="product-details.html">
+                          <i class="fa fa-caret-square-o-right"></i>
+                          Hot Deals
+                        </a>
+                      </li>
+                      <li>
+                        <a href="product-details.html">
+                          <i class="fa fa-caret-square-o-right"></i>
+                          Special Promotions
+                        </a>
+                      </li>
+                      <li>
+                        <a href="product-details.html">
+                          <i class="fa fa-caret-square-o-right"></i>
+                          On Sale Phones
+                        </a>
+                      </li>
+                      <li>
+                        <a href="product-details.html">
+                          <i class="fa fa-caret-square-o-right"></i>
+                          Top Sellers
+                        </a>
+                      </li>
+                      <li>
+                        <a href="product-details.html">
+                          <i class="fa fa-caret-square-o-right"></i>
+                          In Stock Only
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <div id="accordion3" class="accordion-l-box wow fadeInUp enable-accordion" data-active="0" data-collapsible="true" data-height-style="content">
+                  <h3>
+                    <span class="heading-line title-accordion-menu-item">Price</span>
+                    <span class="accordion-icon"></span>
+                  </h3>
+                  <div>
+                    <div class="price-block">
+                      <div id="slider-range"></div>
+                      <input type="text" name="price" id="price-min">
+                      <span class="price-diveder">-</span>
+                      <input type="text" name="price2" id="price-max">
+                      <button class="btn btn-default-color1 btn-sm">filter</button>
+                    </div>
+                  </div>
+                </div>
+                <div id="accordion4" class="accordion-l-box wow fadeInUp enable-accordion" data-active="0" data-collapsible="true" data-height-style="content">
+                  <h3>
+                    <span class="heading-line title-accordion-menu-item">operating system</span>
+                    <span class="accordion-icon"></span>
+                  </h3>
+                  <div>
+                    <ul>
+                      <li class="active">
+                        <a href="product-details.html">
+                          <i class="fa fa-caret-square-o-right"></i>
+                          Apple iPhone
+                          <span class="category-counter">[25]</span>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="product-details.html">
+                          <i class="fa fa-caret-square-o-right"></i>
+                          Samsung
+                          <span class="category-counter">[08]</span>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="product-details.html">
+                          <i class="fa fa-caret-square-o-right"></i>
+                          HTC
+                          <span class="category-counter">[39]</span>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="product-details.html">
+                          <i class="fa fa-caret-square-o-right"></i>
+                          Blackberry
+                          <span class="category-counter">[50]</span>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="product-details.html">
+                          <i class="fa fa-caret-square-o-right"></i>
+                          Huawei
+                          <span class="category-counter">[17]</span>
+                        </a>
+                      </li>
+                      <li class="more">
+                        <span class="load-more">load more</span>
+                        <ul class="more-list">
+                          <li>
+                            <a href="product-details.html">
+                              <i class="fa fa-caret-square-o-right"></i>
+                              Samsung
+                              <span class="category-counter">[08]</span>
+                            </a>
+                          </li>
+                          <li>
+                            <a href="product-details.html">
+                              <i class="fa fa-caret-square-o-right"></i>
+                              HTC
+                              <span class="category-counter">[39]</span>
+                            </a>
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <div id="accordion5" class="accordion-l-box wow fadeInUp enable-accordion" data-active="false" data-collapsible="true" data-height-style="content">
+                  <h3>
+                    <span class="heading-line title-accordion-menu-item">Storage capacity</span>
+                    <span class="accordion-icon"></span>
+                  </h3>
+                  <div>
+                    <ul>
+                      <li class="active">
+                        <a href="product-details.html">
+                          <i class="fa fa-caret-square-o-right"></i>
+                          Apple iPhone
+                          <span class="category-counter">[25]</span>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="product-details.html">
+                          <i class="fa fa-caret-square-o-right"></i>
+                          Samsung
+                          <span class="category-counter">[08]</span>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="product-details.html">
+                          <i class="fa fa-caret-square-o-right"></i>
+                          HTC
+                          <span class="category-counter">[39]</span>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="product-details.html">
+                          <i class="fa fa-caret-square-o-right"></i>
+                          Blackberry
+                          <span class="category-counter">[50]</span>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="product-details.html">
+                          <i class="fa fa-caret-square-o-right"></i>
+                          Huawei
+                          <span class="category-counter">[17]</span>
+                        </a>
+                      </li>
+                      <li class="more">
+                        <span class="load-more">load more</span>
+                        <ul class="more-list">
+                          <li>
+                            <a href="product-details.html">
+                              <i class="fa fa-caret-square-o-right"></i>
+                              Samsung
+                              <span class="category-counter">[08]</span>
+                            </a>
+                          </li>
+                          <li>
+                            <a href="product-details.html">
+                              <i class="fa fa-caret-square-o-right"></i>
+                              HTC
+                              <span class="category-counter">[39]</span>
+                            </a>
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <div id="accordion6" class="accordion-l-box wow fadeInUp enable-accordion" data-active="false" data-collapsible="true" data-height-style="content">
+                  <h3>
+                    <span class="heading-line title-accordion-menu-item">Screen size</span>
+                    <span class="accordion-icon"></span>
+                  </h3>
+                  <div>
+                    <ul>
+                      <li class="active">
+                        <a href="product-details.html">
+                          <i class="fa fa-caret-square-o-right"></i>
+                          Apple iPhone
+                          <span class="category-counter">[25]</span>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="product-details.html">
+                          <i class="fa fa-caret-square-o-right"></i>
+                          Samsung
+                          <span class="category-counter">[08]</span>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="product-details.html">
+                          <i class="fa fa-caret-square-o-right"></i>
+                          HTC
+                          <span class="category-counter">[39]</span>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="product-details.html">
+                          <i class="fa fa-caret-square-o-right"></i>
+                          Blackberry
+                          <span class="category-counter">[50]</span>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="product-details.html">
+                          <i class="fa fa-caret-square-o-right"></i>
+                          Huawei
+                          <span class="category-counter">[17]</span>
+                        </a>
+                      </li>
+                      <li class="more">
+                        <span class="load-more">load more</span>
+                        <ul class="more-list">
+                          <li>
+                            <a href="product-details.html">
+                              <i class="fa fa-caret-square-o-right"></i>
+                              Samsung
+                              <span class="category-counter">[08]</span>
+                            </a>
+                          </li>
+                          <li>
+                            <a href="product-details.html">
+                              <i class="fa fa-caret-square-o-right"></i>
+                              HTC
+                              <span class="category-counter">[39]</span>
+                            </a>
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </div>
+                </div> -->
+              </div>
+            </div>
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
               <div class="detail-title">
                 <h3 class=heading-line>{{product.name}}</h3>
@@ -165,8 +401,17 @@
                             <!--   <span class="product-availability pull-right">iN STOCk</span> -->
                             </div>
                             <div class="rating">
-                              <div >
-                                  <a id="top-review" class="product-review" href="#">Top Reviews</a>
+                           <!--    <span class="star"><i class="fa fa-star"></i></span>
+                              <span class="star"><i class="fa fa-star"></i></span>
+                              <span class="star"><i class="fa fa-star"></i></span>
+                              <span class="star"><i class="fa fa-star"></i></span>
+                              <span class="star star-empty"><i class="fa fa-star-o"></i></span> -->
+                              <!-- <div class="add-review"> -->
+                               <!--  <span><span class="review-counter">4</span>Review(s)</span> -->
+                                <!-- <a href="product-details.html">Add Your Review</a> -->
+                              <!-- </div> -->
+                              <div id="top-review">
+                                  <a class="product-review" href="product-details.html">Top Reviews</a>
                                   <span class="product-review-no-color">(</span>
                                   <span id="review-percent" class="product-review-percent">63.7%</span>
                                    <span class="product-review-no-color">)</span>
@@ -233,7 +478,7 @@
                           <button type="button" class="btn btn-add btn-add-wish"><i class="fa fa-heart-o"></i></button>
                         </div> -->
                         <div class="cart-add-buttons">
-                          <button type="button" class="btn btn-cart-color2"  ng-click="addProductToCart(product)"><i class="fa fa-shopping-cart fa-lg"></i> add to cart</button>
+                          <button type="button" class="btn btn-cart-color2"><i class="fa fa-shopping-cart fa-lg"></i> add to cart</button>
                         </div>
                       </div>
                      <!--  <div class="b-socials full-socials clearfix">
@@ -486,5 +731,4 @@
             </div>
           </div>
         </div> -->
-        
       </section>

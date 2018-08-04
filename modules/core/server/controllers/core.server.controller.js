@@ -35,42 +35,53 @@ exports.webHook = function (req, res) {
     return res.send('wrong token,error')
 };
 
+
+const https = require('https');
+var Regex = require("regex");
+
 // to post data
 exports.receiveDataWebHook = function (req, res) {
-
-  console.log(req.body)
   let changes_events = req.body.entry[0].changes
-  console.log(changes_events)
-  console.log(changes_events[0].from)
     for (let i = 0; i < changes_events.length; i++) {
       let event = req.body.entry[0].changes[i]
       let val = event.value
       if (val.message) {
-        var comment = new Comment()
-        comment.facebookId = val.from.id
-        comment.senderName = val.from.name
-        comment.commentId = val.id
-        comment.content = val.message
-        comment.created_time = val.created_time
-        comment.save(err => {
-          if (err) console.log("error save comment")
-          else {
-            console.log("successful save comment")
-          }
-        });
-        // console.log(comment)
+          let commentId = val.id
+          let sentence = val.message
+          getProductId(commentId, (productId) => {
+              callApiAnalysisSentiment(sentence, commentId, (sentimentAnalyzed) => {
+                  var comment = new Comment()
+                  comment.facebookId = val.from.id
+                  comment.senderName = val.from.name
+                  comment.productId = productId
+                  comment.commentId = commentId
+                  comment.content = val.message
+                  comment.created_time = val.created_time
+                  comment.sentiment = sentimentAnalyzed
+                  comment.save(err => {
+                    if (!err) {
+                      console.log(comment)
+                    } else {
+                      console.log("error when save comment")
+                    }
+                  })
+              })
+          });
       }
     }
 
-  function analysisSentiment() {
+  function callApiAnalysisSentiment(sentence, commentId, callback) {
     var http = require('http');
     var post_data = JSON.stringify({
-        'sentence' : 'pin quá trâu'
+        'sentence' : sentence,
+        commentId
     });
 
     var post_options = {
-        host: 'semanticapipython.herokuapp.com',
+        host: 'sentimentanalyzeserver.herokuapp.com',
         port: '80',
+        // host: 'localhost',
+        // port: '3333',
         // path: '/webhook',
         method: 'POST',
         headers: {
@@ -79,16 +90,33 @@ exports.receiveDataWebHook = function (req, res) {
         }
     };
 
-    // Set up the request
     var post_req = http.request(post_options, function(res) {
         res.setEncoding('utf8');
         res.on('data', function (chunk) {
-            console.log('Response: ' + chunk);
+            // console.log('Response: ' + chunk);
+            callback(chunk)
         });
     });
     post_req.write(post_data);
     post_req.end();
   }
+  function getProductId(commentId, callback) {
+    https.get(
+      `https://graph.facebook.com/v3.1/${commentId}/?fields=permalink_url&access_token=566972150348724|0bh_ZJFKYutb0rVNdxELBBl6Il4`, (resp) => {
+      let data = '';
+      resp.on('data', (chunk) => {
+        data += chunk;
+      });
+      resp.on('end', () => {
+        let regex = new Regex(/(products)(\\\\u)(.*)(\\\\u)(.*)(fb_comment_id)/);
+        let productId = data.split('\\')[9].replace("u00252F", "")
+        callback(productId)
+      });
+    }).on("error", (err) => {
+      console.log("Error: " + err.message);
+    });
+  }
+  
   
   res.sendStatus(200)
 }

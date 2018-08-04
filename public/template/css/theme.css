@@ -5566,3 +5566,130 @@ footer.style-2 .footer-socials .b-socials li a:hover {
         transform: rotate(360deg);
     }
 }
+
+
+/*product detail*/
+.product-review {
+    color: #888888;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.product-review-no-color {
+    font-weight:bold;
+    font-size:20px;
+}
+
+.product-review-percent {
+    color: #67ad2a;;
+    font-weight:bold;
+    font-size:20px;
+}
+
+#top-review{
+    cursor: pointer;
+}
+
+#popup-top-review { 
+    /*display: none;   */
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    /* background-color: rgb(0,0,0); */
+    /*background-color: rgba(68, 68, 68, 0.9);*/
+    overflow-x: hidden;
+    background: transparent;
+     /*transition: 0.5s; */
+}
+
+#top-review-content {
+    height: auto;
+    width: 90%;
+    background: white;
+    margin: 30px auto;
+    border-radius: 5px !important;
+    border: solid 1px #cfcfcf;
+}
+
+.close-button-review {
+    float: right!important;
+    background: transparent;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    /* z-index: 99; */
+    display: block;
+}
+
+.heading-top-review {
+    font-size: 22px;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 0px 10px 10px 10px;
+    border-bottom: solid 3px black;
+}
+
+.comment-sentiment {
+    text-transform: uppercase;
+    display: block;
+    float: right;
+    font-style: ;
+    margin: 50px;
+    padding: 5px;
+    font-weight: bold;
+}
+
+.comment-sentiment-content {
+    font-size: 14px;
+}
+
+.comment-sender {
+    font-weight: bold;
+    display: inline-block !important;
+}
+
+.comment-all-content {
+    margin-left: 30px !important;
+    /*padding: 20px 20px 5px 20px !important;*/
+    border: 1px solid #eeeeee !important;
+    position: relative !important;
+}
+
+.styled-select {
+    padding-left: 15px !important;
+    font-size: 15px;
+    -webkit-appearance: none;
+    background: url(http://i62.tinypic.com/15xvbd5.png) no-repeat 96% 0;
+    height: 29px;
+    overflow: hidden;
+    width: 240px;
+    float: right;
+    margin-right: 10%;
+    margin-top: 2%;
+}
+
+.styled-select select {
+    background: transparent;
+    border: none;
+    font-size: 14px;
+    height: 29px;
+    padding: 5px; /* If you add too much padding here, the options won't show in IE */
+    width: 268px;
+}
+
+.styled-select.slate {
+    background: url(http://i62.tinypic.com/2e3ybe1.jpg) no-repeat right center;
+    height: 34px;
+    width: 240px;
+}
+
+.styled-select.slate select {
+    border: 1px solid #ccc;
+    font-size: 16px;
+    height: 34px;
+    width: 268px;
+}

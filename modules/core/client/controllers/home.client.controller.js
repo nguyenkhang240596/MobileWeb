@@ -44,11 +44,13 @@ angular.module('core').controller('HomeController', ['$scope', '$state', '$http'
         $scope.success = true;
         $scope.carts = response;
         var sumPrice = 0;
+        var total = 0
         for(var i of $scope.carts) {
           sumPrice += i.quantity * i.productId.price;
+          total += i.quantity
         }
         $scope.sumPrice = sumPrice;
-        $scope.countCartItem = response.length;
+        $scope.countCartItem = total;
         // $("#cart-wrapper .counter").html
         $('.total td:nth-child(2)').text("$" + (sumPrice + 50))
         console.log($scope.carts)
@@ -95,6 +97,20 @@ angular.module('core').controller('HomeController', ['$scope', '$state', '$http'
           break;
         }
       }
+    }
+
+    $scope.checkoutCart = function(carts) {
+      var cartsId = []
+      for(var cart of carts) {
+        cartsId.push(cart._id)
+      }
+      $http.post('/api/users/createOrder', { carts : cartsId }).success(function (response) {
+          // If successful show success message and clear form
+          $scope.success = true;
+          $scope.carts = []
+        }).error(function (response) {
+          $scope.error = response.message;
+        });
     }
   }
 ]);

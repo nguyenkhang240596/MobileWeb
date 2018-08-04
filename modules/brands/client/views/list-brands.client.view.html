@@ -37,7 +37,8 @@
               data-slider-next="" data-slider-prev="">
 
               <li ng-repeat="brand in brands">
-                <a ui-sref="brands.view({ brandId: brand._id })">
+                <!-- <a ui-sref="brands.view({ brandId: brand._id })"> -->
+                <a href="#">
                   <img ng-src="{{brand.image}}" replace="{{brand.name}}" class="img-responsive center-block"  style="display: table-cell;
                     position: relative;
                     z-index: 1;

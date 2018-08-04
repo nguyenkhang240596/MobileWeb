@@ -54,11 +54,11 @@
 											</div>
 											<div class="caption">
 												<a class="product-name" ui-sref="products.view({   productId: cart.productId._id })">{{cart.productId.name}}</a>
-												<div class="product-options">
-													<p class="opt-color">color: <span>rose gold</span></p>
+											<!-- 	<div class="product-options">
+													<p class="opt-color">color: <span>róe gold</span></p>
 													<p class="availability"><span>In stock</span></p>
 												</div>
-												<button type="button" class="btn btn-add-wish"><i class="fa fa-heart-o"></i> move to wishlist</button>
+												<button type="button" class="btn btn-add-wish"><i class="fa fa-heart-o"></i> move to wishlist</button> -->
 											</div>
 										</td>
 										<td>
@@ -80,63 +80,65 @@
 								</tbody>
 							</table>
 						</div>
-						<button onclick="document.location.href=this.getAttribute('href');" href="/" class="btn btn-default-color1 btn-continue btn-sm">continue shopping</button>
+						<button onclick="document.location.href=this.getAttribute('href');" href="/" class="btn btn-default-color1 btn-continue btn-sm">Quay lại cửa hàng</button>
 					</div>
 					<div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 wow fadeInLeft">
-						<form id="tax-discount-form" class="b-form b-form-add" method="get" action="#">
+						<div id="tax-discount-form" class="b-form b-form-add">
 							<ul class="nav nav-tabs" role="tablist">
 								<li role="presentation" class="active">
-									<a class="heading-line" href="shopping-cart.html#tax" aria-controls="tax" role="tab" data-toggle="tab">estimate shipping & tax</a>
+									<a class="heading-line" href="#" aria-controls="tax" role="tab" data-toggle="tab">Thông Tin Đặt Hàng</a>
 								</li>
-								<li role="presentation">
+								<!-- <li role="presentation">
 									<a class="heading-line" href="shopping-cart.html#discount" aria-controls="discount" role="tab" data-toggle="tab">Discount code</a>
-								</li>
+								</li> -->
 							</ul>
 							<div class="tab-content">
 								<div role="tabpanel" class="tab-pane active" id="tax">
 									<div class="form-group">
-										<div class="b-form-description">
+										<!-- <div class="b-form-description">
 											<p>
-												Choose your destination and get a shipping & tax estimate.
+												Chốe your destination and get a shipping & tã estimate.
 											</p>
-										</div>
+										</div> -->
 										<div class="row">
 											<div class="col-sm-6">
-												<select class="selectpicker" data-width="100%" title="Country">
+												<select id="country" class="selectpicker" data-width="100%" title="Country">
 													<option>VietNam</option>
-													<option>Singapore</option>
+													<!-- <option>Singapore</option> -->
 												</select>
 											</div>
 											<div class="col-sm-6">
-												<select class="selectpicker" data-width="100%" title="State / province">
+												<select id="province" class="selectpicker" data-width="100%" title="State / province">
 													<option>AnGiang</option>
 													<option>HaNoi</option>
 													<option>HoChiMinh</option>
 												</select>
 											</div>
 											<div class="col-sm-6">
-												<input type="text" class="form-control" id="form-zip-postal" placeholder="Zip / postal code">
+												<input type="text" class="form-control" id="fullAdrress" placeholder="Full Address">
 											</div>
 											<div class="col-sm-6">
-												<button type="submit" class="btn btn-default">get estimate</button>
+												<button id="checkout"  
+												ng-click="checkoutCart(carts)" class="btn btn-primary-color2 btn-sm">Đặt hàng
+												</button>
 											</div>
 										</div>
 									</div>
 								</div>
-								<div role="tabpanel" class="tab-pane" id="discount">
+							<!-- 	<div role="tabpanel" class="tab-pane" id="discount">
 									<div class="form-group">
-										<div class="row">
+										<div class="rơ">
 											<div class="col-sm-12">
-												<input type="text" class="form-control" id="form-last-name" placeholder="Enter Code">
+												<input type="tẽt" class="form-control" id="form-lát-name" placeholder="Enter Code">
 											</div>
 											<div class="col-sm-12">
 												<button type="submit" class="btn btn-default">submit code</button>
 											</div>
 										</div>
 									</div>
-								</div>
+								</div> -->
 							</div>
-						</form>
+						</div>
 					</div>
 					<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 wow fadeInRight">
 						<div class="b-total-table clearfix">
@@ -160,7 +162,7 @@
 									</tr>
 								</tbody>
 							</table>
-							<button class="btn btn-primary-color2 btn-sm">proceed to checkout</button>
+							<!-- <button class="btn btn-primary-color2 btn-sm">proceed to checkout</button> -->
 						</div>
 					</div>
 				</div>

@@ -1,7 +1,10 @@
 'use strict';
 
-angular.module('core').controller('HeaderController', ['$scope', '$http', '$state', 'Authentication', 'Menus',
-  function ($scope, $http, $state, Authentication, Menus) {
+angular.module('core').controller('HeaderController', ['$scope', '$state', '$http', 'Authentication', 'Menus', 'ProductsService',
+  function ($scope, $state, $http, Authentication, Menus, ProductsService) {
+    var vm = this
+    vm.products = ProductsService.query();
+
     // Expose view variables
     $scope.$state = $state;
     $scope.authentication = Authentication;
@@ -50,13 +53,15 @@ angular.module('core').controller('HeaderController', ['$scope', '$http', '$stat
         $scope.success = true;
         $scope.carts = response;
         var sumPrice = 0;
+        var total = 0
         for(var i of $scope.carts) {
           sumPrice += i.quantity * i.productId.price;
+          total += i.quantity
         }
         $scope.sumPrice = sumPrice;
-        $scope.countCartItem = response.length;
+        $scope.countCartItem = total;
         // $("#cart-wrapper .counter").html
-        $("#cart-wrapper .counter").text(response.length)
+        $("#cart-wrapper .counter").text(total)
         $("#sumPrice").text(sumPrice)
         // console.log("load cart " + response.length)
       }).error(function (response) {
