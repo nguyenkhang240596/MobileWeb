@@ -5603,7 +5603,7 @@ footer.style-2 .footer-socials .b-socials li a:hover {
     /*background-color: rgba(68, 68, 68, 0.9);*/
     overflow-x: hidden;
     background: transparent;
-     /*transition: 0.5s; */
+     transition: 0.5s; 
 }
 
 #top-review-content {
