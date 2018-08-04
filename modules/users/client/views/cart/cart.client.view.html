@@ -1,4 +1,4 @@
-1<section ng-controller="HomeController" ng-init="loadCart()">
+<section ng-controller="HomeController" ng-init="loadCart()">
 		<div id="page-preloader"><span class="spinner"></span></div>
 
 			<div class="b-page-header">
@@ -46,10 +46,10 @@
 								</thead>
 								<tbody>
 									<tr ng-repeat="cart in carts">
-										<td>
+										<td class="order-content">
 											<div class="image">
 												<a ui-sref="products.view({   productId: cart.productId._id })">
-					                                <img style="width: 192px; height: 192px;" src="{{cart.productId.image}}" class="img-responsive img-thumbnail center-block" alt="/">
+					                                <img style="width: 96px; height: 96px;" src="{{cart.productId.image}}" class="img-responsive img-thumbnail center-block" alt="/">
 				                                </a>
 											</div>
 											<div class="caption">
@@ -61,19 +61,19 @@
 												<button type="button" class="btn btn-add-wish"><i class="fa fa-heart-o"></i> move to wishlist</button> -->
 											</div>
 										</td>
-										<td>
-											<span class="product-price">${{cart.productId.price}}</span>
+										<td class="order-content">
+											<span class="product-price">{{cart.productId.price}} VND</span>
 										</td>
-										<td>
+										<td class="order-content">
 											<div class="input-group btn-block qty-block" data-trigger="spinner">
 												<a ng-click="subQuantity(cart.quantity, cart._id)" class="spinner-btn-mod" href="javascript:;" data-spin="down">-</a><input class="form-control" type="text" value="{{cart.quantity}}" data-rule="quantity" style="width: 55px">
 												<a ng-click="addQuantity(cart._id)"  class="spinner-btn-mod" href="javascript:;" data-spin="up">+</a>
 											</div>
 										</td>
-										<td>
-											<span class="product-price total-price">${{cart.quantity * cart.productId.price}}</span>
+										<td class="order-content">
+											<span class="product-price total-price">{{cart.quantity * cart.productId.price}} VND</span>
 										</td>
-										<td class="text-left">
+										<td class="order-content text-left">
 											<button class="btn btn-remove" ng-click="removeCart($event, cart._id)"><i class="fa fa-trash fa-lg"></i></button>
 										</td>
 									</tr>
@@ -102,20 +102,20 @@
 										</div> -->
 										<div class="row">
 											<div class="col-sm-6">
-												<select id="country" class="selectpicker" data-width="100%" title="Country">
-													<option>VietNam</option>
-													<!-- <option>Singapore</option> -->
+												<input id="userName" type="text" class="form-control" value="{{user.displayName}}">
+											</div>
+											<div class="col-sm-6">
+												<input id="phoneNumber" type="text" class="form-control"  placeholder="số điện thoại">
+											</div>
+											<div class="col-sm-6">
+												<select id="province" class="selectpicker" data-width="100%" title="Tỉnh / Thành Phố">
+													<option>An Giang</option>
+													<option>Hà Nội</option>
+													<option>Hồ Chí Minh</option>
 												</select>
 											</div>
 											<div class="col-sm-6">
-												<select id="province" class="selectpicker" data-width="100%" title="State / province">
-													<option>AnGiang</option>
-													<option>HaNoi</option>
-													<option>HoChiMinh</option>
-												</select>
-											</div>
-											<div class="col-sm-6">
-												<input type="text" class="form-control" id="fullAdrress" placeholder="Full Address">
+												<input id="fullAddress" type="text" class="form-control" id="fullAdrress" placeholder="đưòng, xã, phường, quận">
 											</div>
 											<div class="col-sm-6">
 												<button id="checkout"  
@@ -146,19 +146,15 @@
 								<tbody>
 									<tr>
 										<td>Cart Subtotal</td>
-										<td>${{sumPrice}}</td>
+										<td>{{sumPrice}} VND</td>
 									</tr>
 									<tr>
-										<td>Shipping + Handling</td>
-										<td>$50.00</td>
-									</tr>
-									<tr class="pre-total">
-										<td>Tax Charges</td>
-										<td>$20.00</td>
+										<td>Shipping</td>
+										<td>{{shipping}} VND</td>
 									</tr>
 									<tr class="total">
 										<td>grand total</td>
-										<td>${{(sumPrice + 70)}}</td>
+										<td>{{sumPrice + shipping}} VND</td>
 									</tr>
 								</tbody>
 							</table>

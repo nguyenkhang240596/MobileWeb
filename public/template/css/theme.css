@@ -1347,10 +1347,11 @@ textarea {
 
 .b-cart-table .caption {
     display: inline-block;
-    vertical-align: middle;
+    /*vertical-align: middle;*/
     text-transform: uppercase;
     margin-left: 25px;
     margin-top: 6px;
+    text-align: center;
 }
 
 .b-cart-table .caption .product-name {
@@ -5692,4 +5693,44 @@ footer.style-2 .footer-socials .b-socials li a:hover {
     font-size: 16px;
     height: 34px;
     width: 268px;
+}
+
+.order-content {
+    vertical-align: middle !important;
+}
+
+
+
+#popup-detail { 
+    display: none;   
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    overflow-x: hidden;
+    background: transparent;
+    transition: 0.5s; 
+}
+
+#order-detail-content {
+    height: auto;
+    width: 90%;
+    background: white;
+    margin: 30px auto;
+    border-radius: 5px !important;
+    border: solid 1px #cfcfcf;
+}
+
+#order-detail-table.table thead tr td:first-child {
+    padding: 12px 15px 28px 10px !important;
+}
+
+#order-detail-table.table thead tr td {
+    padding: 12px 15px 28px 10px !important;
+}
+
+#order-detail-table.table tbody tr td {
+    padding: 12px 15px 28px 10px !important;
 }

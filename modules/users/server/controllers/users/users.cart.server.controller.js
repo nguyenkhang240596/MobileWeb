@@ -11,54 +11,81 @@ var _ = require('lodash'),
   multer = require('multer'),
   config = require(path.resolve('./config/config')),
   User = mongoose.model('User'),
-  Cart = mongoose.model('Cart'),
+  CartItem = mongoose.model('CartItem'),
+  Order = mongoose.model('Order'),
   Product = mongoose.model('Product');
+
+function notifyErrror(res) {
+  res.status(404).send({
+    message: 'error'
+  });
+}
 
 exports.addProductToUser = function (req, res) {
   // Init Variables
   var user = req.user;
   // For security measurement we remove the roles from the req.body object
   delete req.body.roles;
-  let productId = req.body.productId
-  if (user) {
-    Cart.populate(user, { path : 'cart' }, function (err, user) {
-      Product.populate(user, { path : 'cart.productId' }, function (err, user) {
-        if (!err && user) exec(user)
-      })
-    });
-    function exec(user) {
-      let carts = user.cart;
-      let cart = null;
-      for (var i in carts) {
-        if (carts[i].productId)
-          console.log(carts[i].productId._id, productId)
-        if (carts[i].productId && carts[i].productId._id == productId) {
-          console.log(user.cart, "we found it")
-          cart = carts[i];
-          cart.quantity++;
-          break;
+  let productId = req.body.productId || ''
+
+  // let userId = user._id
+  let userId = req.body.userId || user._id
+  if (userId && productId) {
+    // status : 0 -> ordering, 1 -> checkout, 2 -> delivered
+    Order.findOne({ userId : userId, status : 0 }, (err, order) => {
+      if (err) notifyErrror(res)
+      else {
+        if (order) {
+          console.log({ orderId : order._id, productId : productId })
+          CartItem.findOne({ orderId : order._id, productId : productId }, (err, cartItem) => {
+            if (err) notifyErrror(res)
+            else {
+              if (cartItem) {
+                cartItem.quantity += 1
+                cartItem.save(err => { 
+                  if (err) notifyErrror(res)
+                  else {
+                    res.status(200).send({
+                      message: 'Success'
+                    });
+                  }
+                })
+              } else {
+                var newCartItem = new CartItem()
+                newCartItem.quantity = 1
+                newCartItem.orderId = order._id
+                newCartItem.productId = productId
+                newCartItem.save(err => { 
+                  if (err) notifyErrror(res)
+                  else {
+                    res.status(200).send({
+                      message: 'Success'
+                    });
+                  }
+                })
+              }
+            }
+          })
+        } else {
+          var newOrder = new Order()
+          newOrder.userId = userId
+
+          var newCartItem = new CartItem()
+          newCartItem.quantity = 1
+          newCartItem.orderId = newOrder._id
+          newCartItem.productId = productId
+          newCartItem.save(err => { 
+            if (err) notifyErrror(res)
+            else {
+              newOrder.save()
+              res.status(200).send({
+                message: 'Success'
+              });
+            }
+          })
         }
       }
-      var userCart = user.cart || [];
-      if (!cart) {
-        cart = new Cart();
-        cart.productId = productId;
-        cart.quantity = 1;
-        userCart.push(cart);
-      } 
-
-      user.cart = userCart;
-      user.save(err => {
-        if (err) {
-          res.status(400).send(err);
-        } else {
-          cart.save(err => {
-            if (err) res.status(400).send(err);
-            else res.json(user);
-          });
-        }
-      })
-    }
+    })
   } else {
     res.status(400).send({
       message: 'User is not signed in'
@@ -68,11 +95,23 @@ exports.addProductToUser = function (req, res) {
 
 exports.getUserCart = function (req, res) {
   var user = req.user;
+  let userId = user._id
   if (user) {
-    Cart.populate(user, { path : 'cart' }, function (err, user) {
-      Product.populate(user, { path : 'cart.productId' }, function (err, user) {
-        res.json(user.cart)
-      })
+    Order.findOne({ userId : userId, status : 0 }, (err, order) => {
+      if (!err && order) {
+       CartItem.find({ orderId : order._id },
+        (err, cartItems) => {
+          if (!err) {
+            CartItem.populate(cartItems, { path : 'productId' }, function (err, populatedData) {
+              if (!err) {
+                res.json(populatedData)
+              }
+            })
+          }
+        })
+      } else {
+         res.json([])
+      }
     })
   } else {
     res.status(400).send({
@@ -96,12 +135,27 @@ exports.updateCart = function (req, res) {
   }
 };
 
+exports.removeCartItem = function (req, res) {
+  var cartId = req.body.cartId || '';
+  if (cartId) {
+    CartItem.findOneAndRemove({ _id : cartId }, (err) => {
+      if (!err) {
+        res.status(200).send({ message : 'success' })
+      }
+    })
+  } else {
+    res.status(400).send({
+      message: 'error'
+    });
+  }
+};
+
 
 exports.addQuantity = function (req, res) {
   var user = req.user;
   var cartId = req.body.cartId;
   if (user) {
-    Cart.findOne({ _id : cartId}, (err, cart) => {
+    CartItem.findOne({ _id : cartId}, (err, cart) => {
       cart.quantity++;
       cart.save(err => {
         if (err) res.status(400).send({ message : 'error' })
@@ -119,12 +173,49 @@ exports.subQuantity = function (req, res) {
   var user = req.user;
   var cartId = req.body.cartId;
   if (user) {
-    Cart.findOne({ _id : cartId}, (err, cart) => {
+    CartItem.findOne({ _id : cartId}, (err, cart) => {
       cart.quantity--;
       cart.save(err => {
         if (err) res.status(400).send({ message : 'error' })
         else res.json(cart) 
       })
+    })
+  } else {
+    res.status(400).send({
+      message: 'User is not signed in'
+    });
+  }
+};
+
+
+exports.createOrder = function (req, res) {
+  var userId = req.body.userId ? req.body.userId : ''
+  var fullAddress = req.body.fullAddress ? req.body.fullAddress : ''
+  var userName = req.body.userName ? req.body.userName : ''
+  var phoneNumber = req.body.phoneNumber ? req.body.phoneNumber : ''
+  var totalPrice = req.body.totalPrice ? req.body.totalPrice : 0
+  var shippingPrice = req.body.shippingPrice ? req.body.shippingPrice : 0
+
+  console.log(userId, fullAddress)
+  if (userId && fullAddress && userName && phoneNumber) {
+    Order.findOne({ userId : userId, status : 0 },
+    (err, order) => {
+      if (err) console.log('error update create order')
+      else {
+        order.status = 1
+        order.fullAddress = fullAddress
+        order.userName = userName
+        order.phoneNumber = phoneNumber
+        order.totalPrice = totalPrice
+        order.shippingPrice = shippingPrice
+        order.save(err => {
+          if (!err) {
+            res.status(200).send({
+              message: 'Done order for user ' + userId
+            });
+          }
+        })
+      }
     })
   } else {
     res.status(400).send({

@@ -17,6 +17,7 @@
     vm.form = {};
     vm.remove = remove;
     vm.save = save;
+    // vm.comments = []
 
     $scope.findOne = function () {
       $scope.product = ProductsService.get({
@@ -57,14 +58,76 @@
       }
     }
 
-    initLoadData()
-    eventProcessing()
 
-    function initLoadData() {
-      vm.comments = CommentsService.getComments({
+
+    // function initLoadData() {
+    $scope.initLoadData = function() {
+      vm.sentenceTypes = ["Câu khen", "Câu chê"];
+      vm.selectedSentenceTypes = vm.sentenceTypes[0];
+      // vm.comments = CommentsService.getComments({
+      //   productId: $stateParams.productId
+      // });
+      // vm.comments.$promise.then(arr => { vm.commentLength = arr.length})
+      let mPromise = CommentsService.getComments({
         productId: $stateParams.productId
+      })
+      mPromise.$promise.then(arr => { 
+        $scope.updateUI(arr)
+      })
+    }
+
+
+    $scope.updateUI = function(arr) {
+    // function updateUI(arr) {
+      $scope.comments.length = 0 
+      $scope.commentLength = arr.length
+      $scope.comments = arr
+      var success = 0
+      for(var i of arr) {
+        if (i.sentiment == "câu khen"){
+          success++
+        }
+      }
+      $scope.percentage = Math.floor((success / arr.length) * 100) + "%"
+      setTimeout(function(){ 
+        $("#popup-top-review").css({'display' : 'block'})
+      }, 100);
+    }
+
+    $scope.eventProcessing = function() {
+      $("#top-review").off('click').on('click', (event) => {
+        let display = $("#popup-top-review").css('display')
+        if (display != "block") {
+          let mPromise = CommentsService.getComments({
+            productId: $stateParams.productId
+          })
+          mPromise.$promise.then(arr => {
+            $scope.updateUI(arr)
+          })
+
+          
+        } else if (display != "none") {
+          $("#popup-top-review").css({'display' : 'none'})
+          vm.sentenceFilter = undefined
+        }
+      })
+
+      $(document).mouseup(function(e) 
+      {
+          var container = $("#top-review-content");
+
+          // if the target of the click isn't the container nor a descendant of the container
+          if (!container.is(e.target) && container.has(e.target).length === 0) 
+          {
+            $("#popup-top-review").css({'display' : 'none'})
+            vm.sentenceFilter = undefined
+              // container.hide();
+          }
       });
-      vm.comments.$promise.then(arr => { vm.commentLength = arr.length})
+
+      $(".close-button-review ").click(() => {
+        $("#popup-top-review").css({'display' : 'none'})
+      })
     }
 
     vm.formatDate = function(date) {
@@ -83,35 +146,6 @@
       var s = addZero(d.getSeconds());
       return day+"-"+M+"-"+y+" "+h+":"+m+":"+s;
     }
-
-    function eventProcessing() {
-      $("#top-review").off('click').on('click', (event) => {
-        let display = $("#popup-top-review").css('display')
-        if (display != "block") {
-          $("#popup-top-review").css({'display' : 'block'})
-        } else if (display != "none") {
-          $("#popup-top-review").css({'display' : 'none'})
-
-        }
-      })
-
-      $(document).mouseup(function(e) 
-      {
-          var container = $("#top-review-content");
-
-          // if the target of the click isn't the container nor a descendant of the container
-          if (!container.is(e.target) && container.has(e.target).length === 0) 
-          {
-            $("#popup-top-review").css({'display' : 'none'})
-              // container.hide();
-          }
-      });
-
-      $(".close-button-review ").click(() => {
-        $("#popup-top-review").css({'display' : 'none'})
-      })
-    }
-
     $scope.addProductToCart = function (product) {
       console.log(product._id, Authentication.user._id)
       if (!Authentication.user._id) {
@@ -131,6 +165,11 @@
         $scope.error = response.message;
       });
     };
+
+    $scope.comments = []
+    $scope.commentLength = 0;
+    $scope.initLoadData()
+    $scope.eventProcessing()
 
     angular.element(document).ready(function() {
           // FB.XFBML.parse();

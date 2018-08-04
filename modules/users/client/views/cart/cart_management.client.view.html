@@ -1,0 +1,177 @@
+<section ng-controller="HomeController" ng-init="loadOrder()">
+		<div id="page-preloader"><span class="spinner"></span></div>
+		<div id="popup-detail">
+		    <div id="order-detail-content">
+		          <button class="close-button-review">X</button>
+		          <div>
+		                <br>
+		                <h3 class="heading-top-review">Order Details<span> [ {{countCartItem}} ]</span></h3>
+		          </div>
+		          
+				<div class="container">
+					<div class="row">
+						<div class="col-sm-12 cart-table wow fadeInUp">
+							<div class="b-table b-cart-table table-responsive">
+								<table class="table">
+									<thead>
+										<tr>
+											<td>
+												<span>cart items</span>
+											</td>
+											<td>
+												<span>unit price</span>
+											</td>
+											<td>
+												<span>Quantity</span>
+											</td>
+											<td>
+												<span>sub total</span>
+											</td>
+										</tr>
+									</thead>
+									<tbody>
+										<tr ng-repeat="cart in carts">
+											<td class="order-content">
+												<div class="image">
+													<a ui-sref="products.view({   productId: cart.productId._id })">
+						                                <img style="width: 96px; height: 96px;" src="{{cart.productId.image}}" class="img-responsive img-thumbnail center-block" alt="/">
+					                                </a>
+												</div>
+												<div class="caption">
+													<a class="product-name" ui-sref="products.view({   productId: cart.productId._id })">{{cart.productId.name}}</a>
+												</div>
+											</td>
+											<td class="order-content">
+												<span class="product-price">{{cart.productId.price}} VND</span>
+											</td>
+											<td class="order-content">
+												<div class="input-group btn-block qty-block" data-trigger="spinner">
+													{{cart.quantity}}
+												</div>
+											</td>
+											<td class="order-content">
+												<span class="product-price total-price">{{cart.quantity * cart.productId.price}} VND</span>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+						<div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 wow fadeInRight">
+						</div>
+						<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 wow fadeInRight">
+							<div class="b-total-table clearfix">
+								<table class="table table-condensed">
+									<tbody>
+										<tr>
+											<td>Cart Subtotal</td>
+											<td>{{sumPrice}} VND</td>
+										</tr>
+										<tr>
+											<td>Shipping</td>
+											<td>{{shipping}} VND</td>
+										</tr>
+										<tr class="total">
+											<td>grand total</td>
+											<td>{{sumPrice + shipping}} VND</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+	      	</div>	
+	    </div>
+		<div class="b-page-header">
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-12 clearfix">
+						<h3 class="page-title pull-left">Order Management</h3>
+						<div class="b-breadcrumbs pull-right">
+							<ul class="list-unstyled">
+								<li>
+									<a href="#">home</a>
+								</li>
+								<li>
+									<span>Order Management</span>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="container">
+			<div class="row">
+				<table id="order-detail-table" class="table">
+							<thead>
+								<tr>
+									<td>
+										<span>STT</span>
+									</td>
+									<td>
+										<span>Name</span>
+									</td>
+									<td>
+										<span>Phone</span>
+									</td>
+									<td style="width: 200px">
+										<span>Address</span>
+									</td>
+									<td>
+										<span>Shipping</span>
+									</td>
+									<td>
+										<span>Total</span>
+									</td>
+									<td>
+										<span>Status</span>
+									</td>
+									<td>
+										<span>Detail</span>
+									</td>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat="order in orders">
+									<td class="order-content">
+										{{$index+1}}
+									</td>
+									<td class="order-content">
+										{{order.userName}}
+									</td>
+									<td class="order-content">
+										{{order.phoneNumber}}
+									</td>
+									<td style="width: 250px" class="order-content">
+										{{order.fullAddress}}
+									</td>
+									<td class="order-content">
+										{{order.shippingPrice}} VND
+									</td>
+									<td class="order-content">
+										{{order.totalPrice}} VND
+									</td>
+									<td class="order-content" style="width: 100px" >
+										<!-- {{order.status == 1 ? "Pending" : "Delivered"}} -->
+										<select ng-if="order.status==1" style="color :red;width: 145px !important;" ng-click="changeStatus($event, order._id)" class="order-status styled-select slate"  
+							            >
+							              <option ng-selected="order.status==1" style="color :red;">Pending</option>
+							              <option ng-selected="order.status==2" style="color:green;">Delivered</option>
+            							</select>
+										<select ng-if="order.status==2" style="color : green; width: 145px !important;" ng-click="changeStatus($event, order._id)" class="order-status styled-select slate"  
+							            >
+							              <option ng-selected="order.status==1" style="color :red;">Pending</option>
+							              <option ng-selected="order.status==2" style="color:green;">Delivered</option>
+            							</select>
+									</td>
+									<td class="order-content">
+										<button style="padding: 5px 15px !important;" ng-click="loadOrderDetails(order._id)" type="button" class="order-detail btn btn-info">Details</button>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+			</div>
+		</div>
+</section>      

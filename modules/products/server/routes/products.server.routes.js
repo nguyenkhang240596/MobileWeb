@@ -4,7 +4,8 @@
  * Module dependencies
  */
 var productsPolicy = require('../policies/products.server.policy'),
-  products = require('../controllers/products.server.controller');
+  products = require('../controllers/products.server.controller'),
+  comments = require('../controllers/comments.server.controller');
 
 module.exports = function(app) {
   // Products Routes
@@ -16,6 +17,10 @@ module.exports = function(app) {
     .get(products.read)
     .put(products.update)
     .delete(products.delete);
+
+// comments routes
+  app.route('/api/comments/:productId')
+    .get(comments.listComments);
 
   // Finish by binding the Product middleware
   app.param('productId', products.productByID);

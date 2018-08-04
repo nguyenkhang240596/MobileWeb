@@ -13,20 +13,24 @@ var mongoose = require('mongoose'),
 /**
  * Cart Schema
  */
-var CartSchema = new Schema({
-  orderId : {
+var OrderSchema = new Schema({
+  userId : {
     type: Schema.ObjectId,
-    ref: 'Order'
+    ref: 'User'
   },
-  productId : {
-    type: Schema.ObjectId,
-    ref: 'Product'
+  status : {
+    type : Number,
+    default : 0
   },
-  quantity : Number,
+  userName : String,
+  phoneNumber : String,
+  fullAddress : String,
+  totalPrice : Number,
+  shippingPrice : Number,
   createdDate : {
     type: Date,
     default: Date.now
   }
 }, { versionKey : false });
 
-mongoose.model('CartItem', CartSchema);
+mongoose.model('Order', OrderSchema);
