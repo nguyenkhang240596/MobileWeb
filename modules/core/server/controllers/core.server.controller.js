@@ -109,8 +109,10 @@ exports.receiveDataWebHook = function (req, res) {
       });
       resp.on('end', () => {
         console.log(data)
-        let regex = new Regex(/(products)(\\\\u)(.*)(\\\\u)(.*)(fb_comment_id)/);
-        let productId = data.split('\\')[9].replace("u00252F", "")
+        // let regex = new Regex(/(products)(\\\\u)(.*)(\\\\u)(.*)(fb_comment_id)/);
+        // let productId = data.split('\\')[9].replace("u00252F", "")
+        let productId = data. replace(/(%2F|%3F)/g, "--").split("--")[4]
+        console.log(productId)
         callback(productId)
       });
     }).on("error", (err) => {
