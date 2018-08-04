@@ -23,7 +23,7 @@ function notifyErrror(res) {
 
 exports.getAllOrder = function (req, res) {
   var user = req.user;
-  if (user) {
+  // if (user) {
     Order.find({ status : { $in : [1,2 ] }}, (err, orders) => {
       if (!err && orders) {
         res.json(orders)
@@ -33,11 +33,11 @@ exports.getAllOrder = function (req, res) {
         });
       }
     })
-  } else {
-    res.status(400).send({
-      message: 'User is not signed in'
-    });
-  }
+  // } else {
+  //   res.status(400).send({
+  //     message: 'User is not signed in'
+  //   });
+  // }
 };
 
 

@@ -157,7 +157,9 @@ angular.module('core').controller('HomeController', ['$scope', '$state', '$http'
         $scope.error = response.message;
       });
     }
-    $scope.loadCart();
+    if ($scope.user) {
+      $scope.loadCart();
+    }
 
     $scope.loadOrder = function() {
       $http.get('/api/users/getAllOrder').success(function (response) {

@@ -35,10 +35,11 @@ angular.module('users').config(['$stateProvider',
       })
       .state('manage_cart', {
         url: '/manage_cart',
-        templateUrl: 'modules/users/client/views/cart/cart_management.client.view.html',
-        data: {
-          roles: ['admin']
-        }
+        templateUrl: 'modules/users/client/views/cart/cart_management.client.view.html'
+        // ,
+        // data: {
+        //   roles: ['admin']
+        // }
       })
       .state('authentication', {
         abstract: true,
