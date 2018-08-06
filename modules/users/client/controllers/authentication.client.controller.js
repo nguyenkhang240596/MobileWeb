@@ -13,6 +13,18 @@ angular.module('users').controller('AuthenticationController', ['$scope', '$stat
       $location.path('/');
     }
 
+    $(function (){
+      // console.log("hi")
+      var footer = $(".b-footer-add")
+      footer[0].setAttribute("style", 'position : absolute; bottom:0px; width: 100%;')
+      // footer.css({ position : 'absolute'})
+      // footer.css({ bottom : '0px'})
+      // footer.css({ width: '100%'})
+      // console.log(footer.css('bottom'))
+      // if (footer.css('bottom') > 0)
+      //   footer.css({'bottom' : '0px'})
+    })
+
     $scope.signup = function (isValid) {
       $scope.error = null;
 
