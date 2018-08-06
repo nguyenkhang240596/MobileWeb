@@ -251,7 +251,7 @@
                               <a ui-sref="products.view({   productId: product._id })">
                                 <img src="{{product.image}}" class="img-responsive center-block" alt="/">
                               </a>
-                              <div class="image-add-mod">
+                      <!--         <div class="image-add-mod">
                                 <div class="add-description">
                                   <div>
                                     <span>Qualcomm Snapdragon 801</span>
@@ -263,13 +263,13 @@
                                     <span>3GB RAM / 16GB ROM</span>
                                     <br>
                                     <button class="btn btn-default-color1 btn-sm" type="button"><i class="fa fa-refresh fa-lg"></i></button>
-                                    <a ui-sref="products.view({ productId: product._id })" data-gal="prettyPhoto" title="{{product.name}}" class="btn btn-lightbox btn-default-color1 btn-sm">
+                                    <a data-gal="{{product.image}}" title="{{product.name}}" class="btn btn-lightbox btn-default-color1 btn-sm">
                                       <i class="fa fa-search-plus fa-lg"></i>
                                     </a>
                                   </div>
 
                                 </div>
-                              </div>
+                              </div> -->
                             </div>
                             <div class="card-info">
                               <div class="caption">
@@ -279,7 +279,7 @@
                                 <span class="product-price">{{product.price}} VND</span>
                               </div>
                               <div class="add-buttons">
-                                <button type="button" class="btn btn-add btn-add-wish"><i class="fa fa-heart-o"></i></button>
+                              <!--   <button type="button" class="btn btn-add btn-add-wish"><i class="fa fa-heart-o"></i></button> -->
                               <button type="button" class="btn btn-add btn-add-cart" ng-click="addProductToCart(product)"><i class="fa fa-shopping-cart"></i></button>                                </div>
                             </div>
                           </div>

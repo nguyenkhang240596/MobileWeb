@@ -163,6 +163,7 @@ angular.module('core').controller('HomeController', ['$scope', '$state', '$http'
     }
 
     $scope.loadOrder = function() {
+      $("#cart-wrapper").css({ display : "none"})
       $http.get('/api/users/getAllOrder').success(function (response) {
         // If successful show success message and clear form
         console.log(response)
@@ -225,11 +226,15 @@ angular.module('core').controller('HomeController', ['$scope', '$state', '$http'
       if ($scope.carts.length == 0) {
           alert("Không có sản phẩm nào để đặt hàng")
       } else {
-        if (province.includes("province") || !fullAddress) {
+        if (province.includes("Tỉnh") || !fullAddress) {
           // $("#fullAddress").css({border: '1px solid #ff3434'})
           alert("Vui lòng điền đầy đủ thông tin trước khi đặt hàng")
         } else {
-          createOrder(fullAddress + ", " + province, userName, phoneNumber)
+          if (phoneNumber.match(/^(01[2689]|09)[0-9]{8}$/) == null) {
+             alert("Số điện thoại không hợp lệ")
+          } else {
+            createOrder(fullAddress + ", " + province, userName, phoneNumber)
+          }
         }
       }
       function createOrder(_fullAddress, userName, phoneNumber) {

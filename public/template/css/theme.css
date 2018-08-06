@@ -5734,3 +5734,12 @@ footer.style-2 .footer-socials .b-socials li a:hover {
 #order-detail-table.table tbody tr td {
     padding: 12px 15px 28px 10px !important;
 }
+
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0; 
+}

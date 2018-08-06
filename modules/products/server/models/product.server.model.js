@@ -25,11 +25,12 @@ var ProductSchema = new Schema({
   created: {
     type: Date,
     default: Date.now
-  }, 
-  uploadDate: {
-    type: Date,
-    default: Date.now
   }
+  // , 
+  // uploadDate: {
+  //   type: Date,
+  //   default: Date.now
+  // }
 });
 
 mongoose.model('Product', ProductSchema);
