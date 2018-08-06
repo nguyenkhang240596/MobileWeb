@@ -74,7 +74,7 @@
 												<img src="{{cart.productId.image}}" alt="/">
 											</a>
 											<div class="caption">
-												<a class="product-name" href="http://localhost:3000/products/{{cart.productId._id}}">{{cart.productId.name}}</a>
+												<a class="product-name" href="{{this.location.href}}products/{{cart.productId._id}}">{{cart.productId.name}}</a>
 												<span class="product-price">{{cart.quantity}} x ${{cart.productId.price}}</span>
 											</div>
 											<button class="btn btn-remove" ng-click="removeCart($event, cart._id)"><i class="fa fa-trash fa-lg"></i></button>
