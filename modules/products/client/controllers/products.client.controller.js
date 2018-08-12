@@ -208,26 +208,32 @@
 
     angular.element(document).ready(function() {
           // FB.XFBML.parse();
+        // FB.init({
+        //     appId:  '566972150348724',
+        //     status: true,
+        //     // cookie: true,
+        //     xfbml:  true,
+        //     // oauth: true,
+        //     version: 'v3.1'
+        // });
         FB.init({
-            appId:  '566972150348724',
-            status: true,
-            // cookie: true,
-            xfbml:  true,
-            // oauth: true,
-            version: 'v3.1'
+          appId            : '566972150348724',
+          autoLogAppEvents : true,
+          xfbml            : true,
+          version          : 'v3.1'
         });
-        // FB.XFBML.parse(); 
+        FB.XFBML.parse(); 
 
         // In your onload method
-        FB.Event.subscribe('comment.create', comment_callback);
-        FB.Event.subscribe('comment.remove', comment_callback);
+        // FB.Event.subscribe('comment.create', comment_callback);
+        // FB.Event.subscribe('comment.remove', comment_callback);
 
         // In your JavaScript
-        var comment_callback = function(response) {
-          alert(response)
-          console.log("comment_callback");
-          console.log(response);
-        }
+        // var comment_callback = function(response) {
+        //   alert(response)
+        //   console.log("comment_callback");
+        //   console.log(response);
+        // }
         // FB.Event.subscribe('comment.create',
         //     function (response) {
         //       console.log("hi")
