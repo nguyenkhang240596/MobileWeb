@@ -222,7 +222,8 @@
           xfbml            : true,
           version          : 'v3.1'
         });
-        FB.XFBML.parse(); 
+        $(".fb-comments").attr("data-href", window.location.href);
+        // FB.XFBML.parse(); 
 
         // In your onload method
         // FB.Event.subscribe('comment.create', comment_callback);
